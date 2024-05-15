@@ -1,0 +1,47 @@
+.latest-order{
+    flex-direction: column;
+    
+    .latest-order-item{
+        flex: 1;
+        // background-color: rgb(224, 224, 224);
+        margin: 10px 0;
+        padding: 10px;
+        border-radius: 15px;
+        display: flex;
+        flex-direction: column;
+        font-size: 15px;
+        
+        .item-m3{
+            margin: 3px;
+        }
+        .name{
+            color: rgb(46, 138, 10);
+            font-size: 18px;
+        }
+        .press-order{
+            display: flex;
+            justify-content: center;
+        }
+        .is-new{
+            color: red;
+        }
+        .is-old{
+            color: black;
+        }
+    }
+    .new{
+        animation: changeColor 3s linear forwards;
+    }
+    .old{
+        background-color: rgb(224, 224, 224);
+    }
+}
+
+@keyframes changeColor {
+  0% {
+    background-color: rgb(126 109 109);
+  }
+  100% {
+    background-color: rgb(224, 224, 224);
+  }
+}
