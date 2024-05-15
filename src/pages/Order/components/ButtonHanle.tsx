@@ -1,5 +1,4 @@
 import { Button } from 'antd'
-import React from 'react'
 import { regexPhoneNumber } from 'utils'
 
 interface IProps {
