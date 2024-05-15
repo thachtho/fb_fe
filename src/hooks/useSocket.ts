@@ -6,7 +6,7 @@ type SocketType = {
   socket: Socket
 }
 
-const socket = io(CONSTANT.URL)
+const socket = io(CONSTANT.URL_SOCKET)
 socket.on('connect', () => {
   console.log('Connected to server admin page!.')
 })
