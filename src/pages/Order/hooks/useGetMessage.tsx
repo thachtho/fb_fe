@@ -11,6 +11,7 @@ const useGetMessage = () => {
   useEffect(() => {
     socket?.on('postMessage', (data: IPost[]) => {
       // const newPosts = combinePosts(posts || [], data)
+      console.log(22, data)
       setPosts(data)
     })
   }, [socket])
