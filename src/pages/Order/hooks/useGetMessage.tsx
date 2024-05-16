@@ -10,8 +10,8 @@ const useGetMessage = () => {
   const { posts, setPosts } = useOrder()
   useEffect(() => {
     socket?.on('postMessage', (data: IPost[]) => {
-      const newPosts = combinePosts(posts || [], data)
-      setPosts(newPosts)
+      // const newPosts = combinePosts(posts || [], data)
+      setPosts(data)
     })
   }, [socket])
 }
