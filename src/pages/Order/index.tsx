@@ -27,7 +27,7 @@ function OrderPage() {
                 <span className="name item-m3">
                   {item.name}
                   <span className={`${item?.isNew ? 'is-new' : 'is-old'}`}>
-                    ({timeAgo(item.created_at)})
+                    ({timeAgo(new Date(item.created_at))})
                   </span>
                 </span>
                 <ScandalAndMoney content={content} />
