@@ -1,10 +1,10 @@
 interface IPost {
-  id: number
   name: string
-  userId: number
+  userId: string
   content: string
-  phone: string
   created_at: Date
+  postId: string
+  groupId: string
   isNew?: boolean
 }
 

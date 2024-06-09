@@ -6,11 +6,24 @@ import { useGetMessage, useGetPost } from './hooks/useGetMessage'
 import './index.scss'
 import useOrder from './state'
 import { handleRemoveSpecialCharactersContent } from './utils'
+import { IPost } from 'shared/interface'
 
 function OrderPage() {
   const { posts } = useOrder()
   useGetPost()
   useGetMessage()
+
+  // const postsFake: IPost[] = [
+  //   {
+  //     name: 'Ngọc Ánh',
+  //     content: 'Xin chao 0822423246',
+  //     postId: '3699512493604620',
+  //     userId: '100001814073295',
+  //     created_at: new Date(),
+  //     groupId: '',
+  //     isNew: true
+  //   }
+  // ]
 
   return (
     <>
@@ -32,7 +45,7 @@ function OrderPage() {
                 </span>
                 <ScandalAndMoney content={content} />
                 <b className="item-m3 text-lg">{newContent}</b>
-                <ButtonHanle content={content} />
+                <ButtonHanle item={item} />
               </div>
             </div>
           )

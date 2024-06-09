@@ -1,17 +1,23 @@
 import { Button } from 'antd'
+import { IPost } from 'shared/interface'
 import { regexPhoneNumber } from 'utils'
 
 interface IProps {
-  content: string
+  item: IPost
 }
-function ButtonHanle({ content }: IProps) {
-  const phone = regexPhoneNumber(content)
+function ButtonHanle({ item }:  IProps) {
+  const phone = regexPhoneNumber(item.content)
 
   const handlePhone = () => {
     if (phone) {
       alert(phone)
     }
   }
+
+  const handleWatch = () => {
+    window.location.href = `fb://facewebmodal/f?href=https://www.facebook.com/groups/${item.groupId}/permalink/${item.postId}/`;
+  }
+
 
   return (
     <div className="mt-2">
@@ -21,7 +27,7 @@ function ButtonHanle({ content }: IProps) {
       <Button className="mr-2" type="primary">
         Nhắn
       </Button>
-      <Button type="primary">Xem</Button>
+      <Button type="primary" onClick={() => handleWatch()}>Xem</Button>
     </div>
   )
 }
