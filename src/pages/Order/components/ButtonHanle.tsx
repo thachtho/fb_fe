@@ -15,7 +15,9 @@ function ButtonHanle({ item }: IProps) {
   }
 
   const handleWatch = () => {
-    window.location.href = `fb://group/${item.groupId}/permalink/${item.postId}`
+    setTimeout(() => {
+      window.location.href = `fb://facewebmodal/f?href=https://www.facebook.com/groups/${item.groupId}/permalink/${item.postId}/`
+    }, 1000)
   }
 
   return (
