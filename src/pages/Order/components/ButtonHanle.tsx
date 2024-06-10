@@ -14,6 +14,10 @@ function ButtonHanle({ item }: IProps) {
     }
   }
 
+  const handleMessenger = () => {
+    window.location.href = `https://m.me/${item.userId}`
+  }
+
   const handleWatch = () => {
     window.location.href = `https://www.facebook.com/groups/${item.groupId}/posts/${item.postId}/`
   }
@@ -23,7 +27,7 @@ function ButtonHanle({ item }: IProps) {
       <Button className="mr-2" type="primary" onClick={() => handlePhone()}>
         Gọi
       </Button>
-      <Button className="mr-2" type="primary">
+      <Button className="mr-2" type="primary" onClick={() => handleMessenger()}>
         Nhắn
       </Button>
       <Button type="primary" onClick={() => handleWatch()}>
