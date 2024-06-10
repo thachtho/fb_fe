@@ -15,7 +15,7 @@ function ButtonHanle({ item }: IProps) {
   }
 
   const handleWatch = () => {
-    window.location.href = `fb://profile/${item.postId}`
+    window.location.href = `fb://group/${item.groupId}/permalink/${item.postId}`
   }
 
   return (
