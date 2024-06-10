@@ -10,7 +10,7 @@ function ButtonHanle({ item }: IProps) {
 
   const handlePhone = () => {
     if (phone) {
-      window.location.href = `http://m.me/${item.userId}`
+      window.location.href = `https://m.me/${item.userId}`
     }
   }
 
