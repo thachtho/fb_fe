@@ -15,7 +15,7 @@ function ButtonHanle({ item }: IProps) {
   }
 
   const handleWatch = () => {
-    window.location.href = `https://www.facebook.com/groups/shipperdanang/posts/3700280393527830/`
+    window.location.href = `https://www.facebook.com/groups/1390167227872503/posts/3700280393527830/`
   }
 
   return (
