@@ -10,7 +10,7 @@ function ButtonHanle({ item }: IProps) {
 
   const handlePhone = () => {
     if (phone) {
-      window.open(`tel:+${phone}`)
+      window.open(`tel:${phone}`)
     }
   }
 
