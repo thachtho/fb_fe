@@ -13,22 +13,22 @@ function OrderPage() {
   useGetPost()
   useGetMessage()
 
-  // const postsFake: IPost[] = [
-  //   {
-  //     name: 'Ngọc Ánh',
-  //     content: 'Xin chao 0822423246',
-  //     postId: '3699512493604620',
-  //     userId: '100001814073295',
-  //     created_at: new Date(),
-  //     groupId: '',
-  //     isNew: true
-  //   }
-  // ]
+  const postsFake: IPost[] = [
+    {
+      name: 'Ngọc Ánh',
+      content: 'Xin chao 0822423246',
+      postId: '3699512493604620',
+      userId: '100001814073295',
+      created_at: new Date(),
+      groupId: '',
+      isNew: true
+    }
+  ]
 
   return (
     <>
-      {posts &&
-        posts.map((item, i) => {
+      {postsFake &&
+        postsFake.map((item, i) => {
           const { content } = item
           const newContent = handleRemoveSpecialCharactersContent(content)
 
