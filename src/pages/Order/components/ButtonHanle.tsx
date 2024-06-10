@@ -15,7 +15,7 @@ function ButtonHanle({ item }: IProps) {
   }
 
   const handleWatch = () => {
-    window.location.href = `fb://profile/${item.groupId}`
+    window.location.href = `https://www.facebook.com/groups/shipperdanang`
   }
 
   return (
