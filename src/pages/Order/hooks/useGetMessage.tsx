@@ -1,17 +1,14 @@
+import { getPost } from 'api/post.api'
 import useSocket from 'hooks/useSocket'
 import { useEffect } from 'react'
-import useOrder from '../state'
 import { IPost } from 'shared/interface'
-import { combinePosts } from '../utils'
-import { getPost } from 'api/post.api'
+import useOrder from '../state'
 
 const useGetMessage = () => {
   const { socket } = useSocket()
   const { posts, setPosts } = useOrder()
   useEffect(() => {
     socket?.on('postMessage', (data: IPost[]) => {
-      // const newPosts = combinePosts(posts || [], data)
-      console.log(111, data)
       setPosts(data)
     })
   }, [socket])
