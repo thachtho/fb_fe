@@ -1,33 +1,33 @@
 /* eslint-disable tailwindcss/no-custom-classname */
-import { IPost } from 'shared/interface'
 import timeAgo from 'utils/time'
 import ButtonHanle from './components/ButtonHanle'
 import ScandalAndMoney from './components/ScandalAndMoney'
 import { useGetMessage, useGetPost } from './hooks/useGetMessage'
 import './index.scss'
+import useOrder from './state'
 import { handleRemoveSpecialCharactersContent } from './utils'
 
 function OrderPage() {
-  // const { posts } = useOrder()
+  const { posts } = useOrder()
   useGetPost()
   useGetMessage()
 
-  const postsFake: IPost[] = [
-    {
-      name: 'Ngọc Ánh',
-      content: 'Xin chao 0822423246',
-      postId: '3700158433540026',
-      userId: '100001814073295',
-      created_at: new Date(),
-      groupId: '1390167227872503',
-      isNew: true
-    }
-  ]
+  // const postsFake: IPost[] = [
+  //   {
+  //     name: 'Ngọc Ánh',
+  //     content: 'Xin chao 0822423246',
+  //     postId: '3700158433540026',
+  //     userId: '100001814073295',
+  //     created_at: new Date(),
+  //     groupId: '1390167227872503',
+  //     isNew: true
+  //   }
+  // ]
 
   return (
     <>
-      {postsFake &&
-        postsFake.map((item, i) => {
+      {posts &&
+        posts.map((item, i) => {
           const { content } = item
           const newContent = handleRemoveSpecialCharactersContent(content)
 
