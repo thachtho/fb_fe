@@ -11,7 +11,7 @@ function App() {
     <div>
       <OrderPage />
       <div
-        className="fixed bottom-28 right-2"
+        className="fixed bottom-14 right-2"
         onClick={() => handleRedirectZalo()}
       >
         <img src={kittenHeader} style={{ width: '70px' }} />
