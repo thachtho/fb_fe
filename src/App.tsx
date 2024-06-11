@@ -1,8 +1,23 @@
 import OrderPage from 'pages/Order'
+import kittenHeader from '../public/zalo.png'
 import './app.scss'
 
 function App() {
-  return <OrderPage />
+  const handleRedirectZalo = () => {
+    window.open('https://zalo.me/g/jzvyin775')
+  }
+
+  return (
+    <div>
+      <OrderPage />
+      <div
+        className="absolute bottom-28 right-2"
+        onClick={() => handleRedirectZalo()}
+      >
+        <img src={kittenHeader} style={{ width: '70px' }} />
+      </div>
+    </div>
+  )
 }
 
 export default App
