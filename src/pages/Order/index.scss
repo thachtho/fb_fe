@@ -45,3 +45,16 @@
     background-color: rgb(224, 224, 224);
   }
 }
+
+.latest-order .latest-order-item {
+    display: flex;
+    flex-direction: column;
+    word-wrap: break-word; /* Cho phép xuống hàng nếu vượt quá chiều rộng */
+    overflow-wrap: break-word; /* Cho phép xuống hàng nếu vượt quá chiều rộng */
+  }
+  
+  .latest-order .item-m3.text-lg {
+    word-wrap: break-word; /* Cho phép xuống hàng nếu vượt quá chiều rộng */
+    overflow-wrap: break-word; /* Cho phép xuống hàng nếu vượt quá chiều rộng */
+    white-space: pre-wrap; /* Duy trì khoảng trắng và xuống hàng */
+  }
