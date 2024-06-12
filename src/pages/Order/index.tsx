@@ -1,4 +1,5 @@
 /* eslint-disable tailwindcss/no-custom-classname */
+import ReactHtmlParser from 'html-react-parser'
 import timeAgo from 'utils/time'
 import ButtonHanle from './components/ButtonHanle'
 import ScandalAndMoney from './components/ScandalAndMoney'
@@ -43,7 +44,7 @@ function OrderPage() {
                   </span>
                 </span>
                 <ScandalAndMoney content={content} />
-                <b className="item-m3 text-lg">{newContent}</b>
+                <b className="item-m3 text-lg">{ReactHtmlParser(newContent)}</b>
                 <ButtonHanle item={item} />
               </div>
             </div>
