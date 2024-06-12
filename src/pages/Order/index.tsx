@@ -7,9 +7,10 @@ import { useGetMessage, useGetPost } from './hooks/useGetMessage'
 import './index.scss'
 import useOrder from './state'
 import { handleRemoveSpecialCharactersContent } from './utils'
+import { useEffect } from 'react'
 
 function OrderPage() {
-  const { posts } = useOrder()
+  const { posts, setPosts } = useOrder()
   useGetPost()
   useGetMessage()
 
@@ -24,6 +25,15 @@ function OrderPage() {
   //     isNew: true
   //   }
   // ]
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setPosts([...(posts || [])])
+    }, 10000) // 3000 milliseconds = 3 seconds
+
+    // Cleanup interval on component unmount
+    return () => clearInterval(interval)
+  }, [])
 
   return (
     <>
