@@ -8,7 +8,6 @@ import './index.scss'
 import useOrder from './state'
 import { handleRemoveSpecialCharactersContent } from './utils'
 import { useEffect } from 'react'
-import { IPost } from 'shared/interface'
 
 function OrderPage() {
   const { posts, setPosts } = useOrder()
@@ -29,9 +28,10 @@ function OrderPage() {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setPosts((pre) => {
-        return [...pre]
-      })
+      if (posts && posts.length > 0) {
+        const newPost = [...posts]
+        setPosts(newPost)
+      }
     }, 10000) // 3000 milliseconds = 3 seconds
 
     // Cleanup interval on component unmount
