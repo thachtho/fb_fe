@@ -24,7 +24,12 @@ function ButtonHanle({ item }: IProps) {
 
   return (
     <div className="mt-2">
-      <Button className="mr-2" type="primary" onClick={() => handlePhone()}>
+      <Button
+        disabled={phone ?? ''.length > 0 ? false : true}
+        className="mr-2"
+        type="primary"
+        onClick={() => handlePhone()}
+      >
         Gọi
       </Button>
       <Button className="mr-2" type="primary" onClick={() => handleMessenger()}>
