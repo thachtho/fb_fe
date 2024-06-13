@@ -7,6 +7,7 @@ interface IPost {
   postId: string
   groupId: string
   isNew?: boolean
+  meToShop?: number | null
 }
 
 export interface IDistance {

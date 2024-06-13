@@ -17,7 +17,7 @@ function OrderPage() {
     <>
       {posts &&
         posts.map((item, i) => {
-          const { content } = item
+          const { content, meToShop } = item
           const newContent = handleRemoveSpecialCharactersContent(content)
 
           return (
@@ -31,6 +31,14 @@ function OrderPage() {
                     ({timeAgo(new Date(item.created_at))})
                   </span>
                 </span>
+                {meToShop ? (
+                  <i className="text-red-600">
+                    Cách bạn {meToShop.toFixed(1)}km
+                  </i>
+                ) : (
+                  ''
+                )}
+
                 <ScandalAndMoney content={content} />
                 <b className="item-m3 text-lg">{ReactHtmlParser(newContent)}</b>
                 <ButtonHanle item={item} />

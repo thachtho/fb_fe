@@ -1,8 +1,11 @@
 import axios from 'axios'
 import { getDistance } from 'geolib'
 import { IDistance } from 'shared/interface'
+import useNavigator from './useNavigator'
+import { regexLocation } from 'utils'
 
 function useDistance() {
+  const { getCurrentNavigator } = useNavigator()
   async function getCoordinates(location: string) {
     const response = await axios.get(
       `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(
@@ -30,9 +33,31 @@ function useDistance() {
     }
   }
 
+  const getLocationMeToShop = async (content: string) => {
+    const locationStart = regexLocation(content)
+
+    if (locationStart && locationStart?.length > 0) {
+      const locationA = await getCoordinates(locationStart)
+      const currentNavagator = getCurrentNavigator()
+      const locationB = {
+        latitude: currentNavagator?.latitude,
+        longitude: currentNavagator?.longitude
+      }
+
+      if (locationA) {
+        const km = await calculateDistance(locationA, locationB)
+
+        return km
+      }
+    }
+
+    return null
+  }
+
   return {
     calculateDistance,
-    getCoordinates
+    getCoordinates,
+    getLocationMeToShop
   }
 }
 

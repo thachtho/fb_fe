@@ -1,11 +1,20 @@
 import OrderPage from 'pages/Order'
 import kittenHeader from '../public/zalo.png'
 import './app.scss'
+import { useEffect } from 'react'
+import useNavigator from 'hooks/useNavigator'
 
 function App() {
+  const { setCurrentNavigator } = useNavigator()
   const handleRedirectZalo = () => {
     window.open('https://zalo.me/g/jzvyin775')
   }
+
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition((success) => {
+      setCurrentNavigator(success.coords)
+    })
+  }, [])
 
   return (
     <div>
