@@ -7,36 +7,11 @@ import { useGetMessage, useGetPost } from './hooks/useGetMessage'
 import './index.scss'
 import useOrder from './state'
 import { handleRemoveSpecialCharactersContent } from './utils'
-import { useEffect } from 'react'
 
 function OrderPage() {
-  const { posts, setPosts } = useOrder()
+  const { posts } = useOrder()
   useGetPost()
   useGetMessage()
-
-  // const postsFake: IPost[] = [
-  //   {
-  //     name: 'Ngọc Ánh',
-  //     content: 'Xin chao 0822423246',
-  //     postId: '3700158433540026',
-  //     userId: '100001814073295',
-  //     created_at: new Date(),
-  //     groupId: '1390167227872503',
-  //     isNew: true
-  //   }
-  // ]
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      if (posts && posts.length > 0) {
-        const newPost = [...posts]
-        setPosts(newPost)
-      }
-    }, 10000) // 3000 milliseconds = 3 seconds
-
-    // Cleanup interval on component unmount
-    return () => clearInterval(interval)
-  }, [])
 
   return (
     <>

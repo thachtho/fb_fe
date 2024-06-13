@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 interface IPost {
   name: string
   userId: string
@@ -6,6 +7,11 @@ interface IPost {
   postId: string
   groupId: string
   isNew?: boolean
+}
+
+export interface IDistance {
+  latitude: any
+  longitude: any
 }
 
 export type { IPost }

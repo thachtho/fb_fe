@@ -13,3 +13,21 @@ export function regexPhoneNumber(inputString: string) {
     return null
   }
 }
+
+export function regexLocation(inputString: string) {
+  inputString = inputString.replace(/<\/?[^>]+(>|$)/g, '')
+  const regexs = [/^(.+?) đi/, /^(.+?) di/, /(.*?)(?=\s*[gG][iI][aA][oO])/]
+  let startingLocation = ''
+
+  for (const regex of regexs) {
+    const match = inputString.match(regex)
+
+    if (match && match[1]) {
+      startingLocation = match[1].trim()
+      startingLocation = startingLocation.replace(/^[nN][hH][ậâaă]?[nN]\s*/, '')
+      break
+    }
+  }
+
+  return startingLocation.length ? `${startingLocation}, TP. Đà Nẵng` : null
+}
