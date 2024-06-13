@@ -10,7 +10,7 @@ const useGetMessage = () => {
   const { currentNavagator } = useNavigator()
   const { calculateDistance, getCoordinates } = useDistance()
   const { socket } = useSocket()
-  let { posts } = useOrder()
+  const { posts } = useOrder()
   const { setPosts } = useOrder()
 
   const getLocationMeToShop = async (locationStart: string) => {
@@ -28,18 +28,8 @@ const useGetMessage = () => {
   }
 
   useEffect(() => {
-    socket?.on('postMessage', async (data: IPost) => {
-      if (!posts) {
-        posts = []
-      }
-      // const start = regexLocation(data.content)
-      // console.log('start', start)
-      // if (start && start?.length > 0) {
-      //   const meToShop = await getLocationMeToShop(start)
-      //   console.log('meToShop', meToShop)
-      // }
-      posts.unshift({ ...data })
-      setPosts(posts)
+    socket?.on('postMessage', async (data: IPost[]) => {
+      setPosts(data)
     })
   }, [socket])
 }
