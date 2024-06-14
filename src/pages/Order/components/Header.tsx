@@ -1,8 +1,11 @@
 import { CopyOutlined, SettingOutlined } from '@ant-design/icons'
+import useOrderSave from '../state/orderSave'
 
 function Header() {
+  const { setIsOpenModalOrderSave } = useOrderSave()
+
   const handleSetting = () => {
-    alert('Đang phát triển')
+    setIsOpenModalOrderSave(true)
   }
 
   const handleSave = () => {
