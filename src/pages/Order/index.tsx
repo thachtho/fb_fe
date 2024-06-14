@@ -29,6 +29,7 @@ function OrderPage() {
 
   return (
     <>
+      <Header />
       {posts &&
         posts.map((item, i) => {
           const { content } = item
@@ -36,7 +37,6 @@ function OrderPage() {
 
           return (
             <div key={i} className="latest-order">
-              <Header />
               <div
                 className={`latest-order-item ${item?.isNew ? 'new' : 'old'}`}
               >

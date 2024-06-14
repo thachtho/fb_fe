@@ -9,7 +9,7 @@ function Header() {
     alert('Đang phát triển')
   }
   return (
-    <div className="mt-2 flex justify-end">
+    <div className="mt-3 flex justify-end">
       <div
         className="flex flex-col items-center justify-center"
         onClick={() => handleSetting()}
