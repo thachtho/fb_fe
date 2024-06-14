@@ -1,3 +1,4 @@
+import { CopyOutlined } from '@ant-design/icons'
 import { Button } from 'antd'
 import { IPost } from 'shared/interface'
 import { regexPhoneNumber } from 'utils'
@@ -23,21 +24,31 @@ function ButtonHanle({ item }: IProps) {
   }
 
   return (
-    <div className="mt-2">
-      <Button
-        disabled={phone ?? ''.length > 0 ? false : true}
-        className="mr-2"
-        type="primary"
-        onClick={() => handlePhone()}
-      >
-        Gọi
-      </Button>
-      <Button className="mr-2" type="primary" onClick={() => handleMessenger()}>
-        Nhắn
-      </Button>
-      <Button type="primary" onClick={() => handleWatch()}>
-        Xem
-      </Button>
+    <div className="mt-2 flex justify-between">
+      <div>
+        <Button
+          disabled={phone ?? ''.length > 0 ? false : true}
+          className="mr-2"
+          type="primary"
+          onClick={() => handlePhone()}
+        >
+          Gọi
+        </Button>
+        <Button
+          className="mr-2"
+          type="primary"
+          onClick={() => handleMessenger()}
+        >
+          Nhắn
+        </Button>
+        <Button type="primary" onClick={() => handleWatch()}>
+          Xem
+        </Button>
+      </div>
+
+      <div className="mr-3 flex items-center justify-center">
+        <CopyOutlined className="text-2xl" />
+      </div>
     </div>
   )
 }
