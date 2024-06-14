@@ -23,6 +23,9 @@ function ButtonHanle({ item }: IProps) {
     window.location.href = `https://www.facebook.com/groups/${item.groupId}/posts/${item.postId}/`
   }
 
+  const handleSave = () => {
+    alert('Đang phát triển')
+  }
   return (
     <div className="mt-2 flex justify-between">
       <div>
@@ -46,7 +49,10 @@ function ButtonHanle({ item }: IProps) {
         </Button>
       </div>
 
-      <div className="mr-3 flex items-center justify-center">
+      <div
+        className="mr-3 flex items-center justify-center"
+        onClick={() => handleSave()}
+      >
         <CopyOutlined className="text-2xl" />
       </div>
     </div>
