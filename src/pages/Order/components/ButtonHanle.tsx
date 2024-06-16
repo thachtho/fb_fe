@@ -1,7 +1,7 @@
 import { CopyOutlined } from '@ant-design/icons'
 import { Button } from 'antd'
 import { IPost } from 'shared/interface'
-import { regexPhoneNumber } from 'utils'
+import { regexPhoneNumber } from '../utils'
 
 interface IProps {
   item: IPost
