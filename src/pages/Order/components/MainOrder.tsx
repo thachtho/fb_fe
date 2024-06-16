@@ -11,7 +11,7 @@ function MainOrder({ posts }: { posts: IPost[] }) {
     <>
       {posts &&
         posts.map((item, i) => {
-          const { content } = item
+          const { content, distance } = item
           const newContent = handleRemoveSpecialCharactersContent(content)
 
           return (
@@ -25,6 +25,9 @@ function MainOrder({ posts }: { posts: IPost[] }) {
                     ({timeAgo(new Date(item.created_at))})
                   </span>
                 </span>
+                {distance && (
+                  <i className="text-x text-red-600">Cách bạn: {distance}</i>
+                )}
                 <ScandalAndMoney content={content} />
                 <b className="item-m3 text-lg">{ReactHtmlParser(newContent)}</b>
                 <ButtonHanle item={item} />

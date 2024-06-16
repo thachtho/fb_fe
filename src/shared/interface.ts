@@ -7,6 +7,7 @@ interface IPost {
   postId: string
   groupId: string
   isNew?: boolean
+  distance?: string | null
 }
 
 export interface IDistance {

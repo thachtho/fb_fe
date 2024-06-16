@@ -5,22 +5,38 @@ import { IPost } from 'shared/interface'
 import useNavigator from 'state/navigator'
 import useOrder from '../state'
 import { getDistance } from 'api/google.api'
+import { getAddress } from '../utils'
 
 const useGetMessage = () => {
   const { socket } = useSocket()
-  const { posts } = useOrder()
   const { setPosts, getPosts } = useOrder()
   const { getCurrentNavigator } = useNavigator()
 
   useEffect(() => {
     socket?.on('postMessage', async (data: IPost) => {
       const newPost = getPosts() || []
+
+      let distance = null
+      const location = getCurrentNavigator()
+      if (location) {
+        try {
+          const address = getAddress(data.content)
+          const input = {
+            lat: location.latitude,
+            long: location.longitude,
+            address: address || null
+          }
+          if (address) {
+            distance = await getDistance(input)
+            data.distance = distance
+          }
+        } catch (error) {
+          console.log('Distance error:::')
+        }
+      }
       newPost.unshift({
         ...data
       })
-
-      // const location = getCurrentNavigator()
-      // const distance = await getDistance()
       setPosts(newPost)
     })
   }, [socket])

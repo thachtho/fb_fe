@@ -1,3 +1,5 @@
+import { danang } from 'city/danang'
+
 const handleRemoveSpecialCharactersContent = (content: string) => {
   return content.replace(/<br\s*class="html-br">/g, ', ')
 }
@@ -37,39 +39,38 @@ function regexPhoneNumber(inputString: string) {
   }
 }
 
-function regexLocation(inputString: string) {
-  inputString = inputString.replace(/<\/?[^>]+(>|$)/g, '')
-  const regexs = [/^(.+?) đi/, /^(.+?) di/, /(.*?)(?=\s*[gG][iI][aA][oO])/]
-  let startingLocation = ''
+const getAddress = (content: string) => {
+  for (const district of danang.district) {
+    const data = getStreet(district.street, content)
 
-  for (const regex of regexs) {
-    const match = inputString.match(regex)
-
-    if (match && match[1]) {
-      startingLocation = match[1].trim()
-      startingLocation = startingLocation.replace(/^[nN][hH][ậâaă]?[nN]\s*/, '')
-      break
+    if (data) {
+      const fullData = `${data}, ${district.name}, ${danang.name}, Việt Nam`
+      return fullData
     }
   }
 
-  return startingLocation.length ? `${startingLocation}, TP. Đà Nẵng` : null
+  return null
 }
 
-const regexDistance = async (data: string) => {
-  // const response = await axios.get(
-  //   `https://www.google.com/maps/dir/16.0540029,+108.2090995/52%20Nguy%E1%BB%85n%20S%C6%A1n%2C%20Ho%C3%A0%20C%C6%B0%E1%BB%9Dng%20Nam%2C%20H%E1%BA%A3i%20Ch%C3%A2u%2C%20%C4%90%C3%A0%20N%E1%BA%B5ng%2C%20Vi%E1%BB%87t%20Nam`
-  // )
-  // const data = JSON.stringify(response.data).substring(0, 40000)
-  const regex = /(\d+\.\d+ km)/g
-  const results = []
-  let match
-  // Sử dụng vòng lặp để tìm tất cả các kết quả phù hợp
-  while ((match = regex.exec(data)) !== null) {
-    results.push(match[1])
+const getStreet = (streets: string[], content: string) => {
+  for (const street of streets) {
+    const lowerCaseStr = content.toLowerCase()
+    const lowerCaseSubStr = street.toLowerCase()
+    const data = lowerCaseStr.includes(lowerCaseSubStr)
+
+    if (data) {
+      // const index = lowerCaseStr.indexOf(lowerCaseSubStr)
+      // if (index !== -1) {
+      // Lấy phần tử đúng trước ký tự đó
+      //   const preSubStr = content.substring(0, index).trim().split(' ').pop()
+
+      //   return `${preSubStr} ${street}`
+      // }
+      return street
+    }
   }
 
-  // In ra kết quả
-  console.log(results) // Output: ["6.6 km", "6.6 km", "3.7 km"]
+  return null
 }
 
 export {
@@ -77,6 +78,5 @@ export {
   getFees,
   handleRemoveSpecialCharactersContent,
   regexPhoneNumber,
-  regexLocation,
-  regexDistance
+  getAddress
 }
