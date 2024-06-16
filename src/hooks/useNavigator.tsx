@@ -1,21 +1,13 @@
-import { useEffect, useState } from 'react'
-import { IDistance } from 'shared/interface'
+import { useEffect } from 'react'
+import Navigator from 'state/navigator'
 
-function useNavigator() {
-  const [currentNavagator, setCurrentNavigator] = useState<IDistance>({
-    latitude: null,
-    longitude: null
-  })
-
+function useSetNavigator() {
+  const { setCurrentNavigator } = Navigator()
   useEffect(() => {
     navigator.geolocation.getCurrentPosition((success) => {
       setCurrentNavigator(success.coords)
     })
   }, [])
-
-  return {
-    currentNavagator
-  }
 }
 
-export default useNavigator
+export default useSetNavigator

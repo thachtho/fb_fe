@@ -55,10 +55,28 @@ function regexLocation(inputString: string) {
   return startingLocation.length ? `${startingLocation}, TP. Đà Nẵng` : null
 }
 
+const regexDistance = async (data: string) => {
+  // const response = await axios.get(
+  //   `https://www.google.com/maps/dir/16.0540029,+108.2090995/52%20Nguy%E1%BB%85n%20S%C6%A1n%2C%20Ho%C3%A0%20C%C6%B0%E1%BB%9Dng%20Nam%2C%20H%E1%BA%A3i%20Ch%C3%A2u%2C%20%C4%90%C3%A0%20N%E1%BA%B5ng%2C%20Vi%E1%BB%87t%20Nam`
+  // )
+  // const data = JSON.stringify(response.data).substring(0, 40000)
+  const regex = /(\d+\.\d+ km)/g
+  const results = []
+  let match
+  // Sử dụng vòng lặp để tìm tất cả các kết quả phù hợp
+  while ((match = regex.exec(data)) !== null) {
+    results.push(match[1])
+  }
+
+  // In ra kết quả
+  console.log(results) // Output: ["6.6 km", "6.6 km", "3.7 km"]
+}
+
 export {
   getAdvanceMoney,
   getFees,
   handleRemoveSpecialCharactersContent,
   regexPhoneNumber,
-  regexLocation
+  regexLocation,
+  regexDistance
 }

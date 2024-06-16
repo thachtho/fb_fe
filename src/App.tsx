@@ -1,8 +1,10 @@
 import OrderPage from 'pages/Order'
 import kittenHeader from '../public/zalo.png'
 import './app.scss'
+import useSetNavigator from 'hooks/useNavigator'
 
 function App() {
+  useSetNavigator()
   const handleRedirectZalo = () => {
     window.open('https://zalo.me/g/jzvyin775')
   }
