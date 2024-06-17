@@ -20,10 +20,12 @@ function ButtonHanle({ item, isSaved = false }: IProps) {
   }
 
   const handleMessenger = () => {
+    handleSave()
     window.location.href = `https://m.me/${item.userId}`
   }
 
   const handleWatch = () => {
+    handleSave()
     window.location.href = `https://www.facebook.com/groups/${item.groupId}/posts/${item.postId}/`
   }
 

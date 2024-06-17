@@ -7,9 +7,14 @@ function useLocalStorage() {
     return localStorage.setItem(key, data)
   }
 
+  const removeLocalStorage = (key: string) => {
+    localStorage.removeItem(key)
+  }
+
   return {
     setLocalStorage,
-    getLocalStorage
+    getLocalStorage,
+    removeLocalStorage
   }
 }
 

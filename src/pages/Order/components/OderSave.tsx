@@ -1,6 +1,9 @@
 import { Modal } from 'antd'
 import useOrderSave from '../state/orderSave'
 import MainOrder from './MainOrder'
+import { DeleteOutlined } from '@ant-design/icons'
+import useLocalStorage from 'hooks/useLocalstorage'
+import { toast } from 'react-toastify'
 
 const OrderSave = () => {
   const { isOpenModalOrderSave, setIsOpenModalOrderSave, posts } =
@@ -9,17 +12,14 @@ const OrderSave = () => {
     setIsOpenModalOrderSave(false)
   }
 
-  const handleCancel = () => {
-    setIsOpenModalOrderSave(false)
-  }
-
   return (
     <>
       <Modal
-        title="Đơn đã lưu"
+        title={<Title/>}
         open={isOpenModalOrderSave}
         onOk={handleOk}
-        onCancel={handleCancel}
+        closable={false} 
+        cancelButtonProps={{ style: { display: 'none' } }} 
         bodyStyle={{ maxHeight: '400px', overflowY: 'scroll' }}
       >
         <div>
@@ -29,6 +29,23 @@ const OrderSave = () => {
         </div>
       </Modal>
     </>
+  )
+}
+
+const Title = () => {
+  const { setIsOpenModalOrderSave } =
+  useOrderSave()
+  const { removeLocalStorage } = useLocalStorage()
+  const removelAll = () => {
+    removeLocalStorage('orderSave')
+    toast('Xóa thành công!')
+    setIsOpenModalOrderSave(false)
+  }
+  return (
+    <div className='flex justify-between items-center cursor-pointer' onClick={() => removelAll()}>
+      <span>Đơn đã lưu</span>
+      <div className='flex flex-col justify-center items-center'><DeleteOutlined className='text-xl'/><span>Xóa hết</span></div>
+    </div>
   )
 }
 
