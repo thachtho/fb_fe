@@ -49,25 +49,19 @@ const useGetPost = () => {
 
   const getAllDistance = async (posts: IPost[]) => {
     const location = getCurrentNavigator()
-    const dataDistance = posts.map((item) => {
-      return {
-        ...item,
-        distance: getAddress(item.content)
-      }
-    })
-    const apis = dataDistance.map((item) => {
+
+    const apis = posts.map((item) => {
       const input = {
         lat: location?.latitude,
         long: location?.longitude,
-        address: item.distance || null
+        address: getAddress(item.content) || null
       }
-      const distance = getDistance(input)
 
-      return distance
+      return getDistance(input)
     })
 
     const responseDistance = await Promise.all(apis)
-    const newDataDistance = dataDistance.map((item, i) => {
+    const newDataDistance = posts.map((item, i) => {
       return {
         ...item,
         distance: responseDistance[i].length > 0 ? responseDistance[i] : null
