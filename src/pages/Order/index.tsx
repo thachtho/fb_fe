@@ -1,5 +1,5 @@
 /* eslint-disable tailwindcss/no-custom-classname */
-import { IPost } from 'shared/interface'
+import { Spin } from 'antd'
 import Header from './components/Header'
 import MainOrder from './components/MainOrder'
 import OrderSave from './components/OderSave'
@@ -12,23 +12,19 @@ function OrderPage() {
   useGetPost()
   useGetMessage()
 
-  // const postsFake: IPost[] = [
-  //   {
-  //     name: 'Ngọc Ánh',
-  //     content: '07 Hồ Nguyên Trừng đi 20 Ngũ Hành Sơn',
-  //     postId: '3700158433540026',
-  //     userId: '100001814073295',
-  //     created_at: new Date(),
-  //     groupId: '1390167227872503',
-  //     isNew: true
-  //   }
-  // ]
-
   return (
     <>
       <Header />
-      {posts && posts.length > 0 && <MainOrder posts={posts} />}
-      <OrderSave />
+      {!posts || posts.length === 0 ? (
+        <div className="flex items-center justify-center">
+          <Spin />
+        </div>
+      ) : (
+        <>
+          <MainOrder posts={posts} />
+          <OrderSave />
+        </>
+      )}
     </>
   )
 }
