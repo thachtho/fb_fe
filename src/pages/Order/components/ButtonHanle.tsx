@@ -20,16 +20,16 @@ function ButtonHanle({ item, isSaved = false }: IProps) {
   }
 
   const handleMessenger = () => {
-    handleSave()
+    handleSave(false)
     window.location.href = `https://m.me/${item.userId}`
   }
 
   const handleWatch = () => {
-    handleSave()
+    handleSave(false)
     window.location.href = `https://www.facebook.com/groups/${item.groupId}/posts/${item.postId}/`
   }
 
-  const handleSave = () => {
+  const handleSave = (isToast = true) => {
     let arrLocal = []
     const dataLocal = getLocalStorage('orderSave')
 
@@ -43,9 +43,12 @@ function ButtonHanle({ item, isSaved = false }: IProps) {
 
     if (!isCheck) {
       arrLocal.push(item)
-      toast('Lưu thành công!', {
-        autoClose: 500
-      })
+      if (isToast) {
+        toast('Lưu thành công!', {
+          autoClose: 500
+        })
+      }
+
       return setLocalStorage('orderSave', JSON.stringify(arrLocal))
     }
   }

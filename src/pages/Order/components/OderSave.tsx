@@ -38,7 +38,9 @@ const Title = () => {
   const { removeLocalStorage } = useLocalStorage()
   const removelAll = () => {
     removeLocalStorage('orderSave')
-    toast('Xóa thành công!')
+    toast('Xóa thành công!', {
+      autoClose: 500
+    })
     setIsOpenModalOrderSave(false)
   }
   return (
