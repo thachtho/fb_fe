@@ -21,12 +21,13 @@ const useGetMessage = () => {
       if (location) {
         try {
           const address = getAddress(data.content)
-          const input = {
-            lat: location.latitude,
-            long: location.longitude,
-            address: address || null
-          }
+
           if (address) {
+            const input = {
+              lat: location.latitude,
+              long: location.longitude,
+              address: address || null
+            }
             distance = await getDistance(input)
             data.distance = distance
           }
@@ -43,12 +44,44 @@ const useGetMessage = () => {
 }
 
 const useGetPost = () => {
+  const { getCurrentNavigator } = useNavigator()
   const { setPosts } = useOrder()
+
+  const getAllDistance = async (posts: IPost[]) => {
+    const location = getCurrentNavigator()
+    const dataDistance = posts.map((item) => {
+      return {
+        ...item,
+        distance: getAddress(item.content)
+      }
+    })
+    const apis = dataDistance.map((item) => {
+      const input = {
+        lat: location?.latitude,
+        long: location?.longitude,
+        address: item.distance || null
+      }
+      const distance = getDistance(input)
+
+      return distance
+    })
+
+    const responseDistance = await Promise.all(apis)
+    const newDataDistance = dataDistance.map((item, i) => {
+      return {
+        ...item,
+        distance: responseDistance[i].length > 0 ? responseDistance[i] : null
+      }
+    })
+
+    return newDataDistance
+  }
 
   useEffect(() => {
     ;(async () => {
       const { data } = await getPost()
-      setPosts(data)
+      const posts = await getAllDistance(data)
+      setPosts(posts)
     })()
   }, [])
 }
