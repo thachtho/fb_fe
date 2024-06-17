@@ -41,7 +41,9 @@ function ButtonHanle({ item, isSaved = false }: IProps) {
 
     if (!isCheck) {
       arrLocal.push(item)
-      toast('Lưu thành công!')
+      toast('Lưu thành công!', {
+        autoClose: 500
+      })
       return setLocalStorage('orderSave', JSON.stringify(arrLocal))
     }
   }

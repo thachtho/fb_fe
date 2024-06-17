@@ -2,6 +2,7 @@ import { SettingOutlined } from '@ant-design/icons'
 import SaveIcon from 'components/icons/Save'
 import useLocalStorage from 'hooks/useLocalstorage'
 import useOrderSave from '../state/orderSave'
+import { IPost } from 'shared/interface'
 
 function Header() {
   const { setIsOpenModalOrderSave, setPosts } = useOrderSave()
@@ -18,6 +19,7 @@ function Header() {
     if (dataLocal) {
       arrLocal = JSON.parse(dataLocal)
     }
+    arrLocal = (arrLocal as IPost[]).reverse()
     setPosts(arrLocal)
     setIsOpenModalOrderSave(true)
   }
