@@ -9,7 +9,7 @@ interface IProps {
   item: IPost
   isSaved?: boolean
 }
-function ButtonHanle({ item, isSaved = false }: IProps) {
+function ButtonHandle({ item, isSaved = false }: IProps) {
   const { setLocalStorage, getLocalStorage } = useLocalStorage()
   const phone = regexPhoneNumber(item.content)
 
@@ -87,4 +87,4 @@ function ButtonHanle({ item, isSaved = false }: IProps) {
   )
 }
 
-export default ButtonHanle
+export default ButtonHandle

@@ -4,7 +4,7 @@ import { IPost } from 'shared/interface'
 import { handleRemoveSpecialCharactersContent } from '../utils'
 import timeAgo from 'utils/time'
 import ScandalAndMoney from './ScandalAndMoney'
-import ButtonHanle from './ButtonHanle'
+import ButtonHanle from './ButtonHandle'
 
 interface IProps {
   posts: IPost[]

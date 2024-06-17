@@ -1,4 +1,4 @@
-import { SettingOutlined } from '@ant-design/icons'
+import { AimOutlined, SettingOutlined } from '@ant-design/icons'
 import SaveIcon from 'components/icons/Save'
 import useLocalStorage from 'hooks/useLocalstorage'
 import useOrderSave from '../state/orderSave'
@@ -24,21 +24,28 @@ function Header() {
     setIsOpenModalOrderSave(true)
   }
   return (
-    <div className="mt-3 flex items-center justify-end">
-      <div
+    <div className="mt-3 flex justify-between items-center">
+      <div className='text-white'>
+        <AimOutlined />
+        <span className='ml-2'>Đà Nẵng</span>
+      </div>
+      <div className='flex items-center justify-end'>
+       <div
         className="flex cursor-pointer flex-col items-center justify-center"
         onClick={() => handleSaved()}
       >
         <SaveIcon />
-        <span>Đã lưu</span>
+        <span className='text-white'>Đã lưu</span>
       </div>
       <div
         className="ml-3 mr-2 flex cursor-pointer flex-col items-center justify-center"
         onClick={() => handleSetting()}
       >
-        <SettingOutlined className="text-2xl" />
-        <span>Cài đặt</span>
+        <SettingOutlined className="text-2xl text-white" />
+        <span className='text-white'>Cài đặt</span>
+      </div>       
       </div>
+
     </div>
   )
 }
