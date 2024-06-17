@@ -1,8 +1,10 @@
 import { Modal } from 'antd'
 import useOrderSave from '../state/orderSave'
+import MainOrder from './MainOrder'
 
 const OrderSave = () => {
-  const { isOpenModalOrderSave, setIsOpenModalOrderSave } = useOrderSave()
+  const { isOpenModalOrderSave, setIsOpenModalOrderSave, posts } =
+    useOrderSave()
   const handleOk = () => {
     setIsOpenModalOrderSave(false)
   }
@@ -18,7 +20,14 @@ const OrderSave = () => {
         open={isOpenModalOrderSave}
         onOk={handleOk}
         onCancel={handleCancel}
-      ></Modal>
+        bodyStyle={{ maxHeight: '400px', overflowY: 'scroll' }}
+      >
+        <div>
+          {posts && posts.length > 0 && (
+            <MainOrder posts={posts} isSaved={true} />
+          )}
+        </div>
+      </Modal>
     </>
   )
 }

@@ -1,28 +1,38 @@
-import { CopyOutlined, SettingOutlined } from '@ant-design/icons'
+import { SettingOutlined } from '@ant-design/icons'
+import SaveIcon from 'components/icons/Save'
+import useLocalStorage from 'hooks/useLocalstorage'
 import useOrderSave from '../state/orderSave'
 
 function Header() {
-  const { setIsOpenModalOrderSave } = useOrderSave()
+  const { setIsOpenModalOrderSave, setPosts } = useOrderSave()
+  const { getLocalStorage } = useLocalStorage()
 
   const handleSetting = () => {
-    setIsOpenModalOrderSave(true)
+    alert('Đang phát triển!')
   }
 
-  const handleSave = () => {
-    alert('Đang phát triển')
+  const handleSaved = () => {
+    let arrLocal = []
+    const dataLocal = getLocalStorage('orderSave')
+
+    if (dataLocal) {
+      arrLocal = JSON.parse(dataLocal)
+    }
+    setPosts(arrLocal)
+    setIsOpenModalOrderSave(true)
   }
   return (
-    <div className="mt-3 flex justify-end">
+    <div className="mt-3 flex items-center justify-end">
       <div
-        className="flex flex-col items-center justify-center"
-        onClick={() => handleSetting()}
+        className="flex cursor-pointer flex-col items-center justify-center"
+        onClick={() => handleSaved()}
       >
-        <CopyOutlined className="text-2xl" />
+        <SaveIcon />
         <span>Đã lưu</span>
       </div>
       <div
-        className="ml-3 mr-2 flex flex-col items-center justify-center"
-        onClick={() => handleSave()}
+        className="ml-3 mr-2 flex cursor-pointer flex-col items-center justify-center"
+        onClick={() => handleSetting()}
       >
         <SettingOutlined className="text-2xl" />
         <span>Cài đặt</span>

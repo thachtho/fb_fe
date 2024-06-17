@@ -1,12 +1,16 @@
-import { CopyOutlined } from '@ant-design/icons'
 import { Button } from 'antd'
 import { IPost } from 'shared/interface'
 import { regexPhoneNumber } from '../utils'
+import SaveIcon from 'components/icons/Save'
+import useLocalStorage from 'hooks/useLocalstorage'
+import { toast } from 'react-toastify'
 
 interface IProps {
   item: IPost
+  isSaved?: boolean
 }
-function ButtonHanle({ item }: IProps) {
+function ButtonHanle({ item, isSaved = false }: IProps) {
+  const { setLocalStorage, getLocalStorage } = useLocalStorage()
   const phone = regexPhoneNumber(item.content)
 
   const handlePhone = () => {
@@ -24,10 +28,25 @@ function ButtonHanle({ item }: IProps) {
   }
 
   const handleSave = () => {
-    alert('Đang phát triển')
+    let arrLocal = []
+    const dataLocal = getLocalStorage('orderSave')
+
+    if (dataLocal) {
+      arrLocal = JSON.parse(dataLocal)
+    }
+
+    const isCheck = (arrLocal as IPost[]).find(
+      (post) => post.postId === item.postId
+    )
+
+    if (!isCheck) {
+      arrLocal.push(item)
+      toast('Lưu thành công!')
+      return setLocalStorage('orderSave', JSON.stringify(arrLocal))
+    }
   }
   return (
-    <div className="mt-2 flex justify-between">
+    <div className="mt-2 flex items-center justify-between">
       <div>
         <Button
           disabled={phone ?? ''.length > 0 ? false : true}
@@ -49,12 +68,14 @@ function ButtonHanle({ item }: IProps) {
         </Button>
       </div>
 
-      <div
-        className="mr-3 flex items-center justify-center"
-        onClick={() => handleSave()}
-      >
-        <CopyOutlined className="text-2xl" />
-      </div>
+      {!isSaved && (
+        <div
+          className="mr-6 flex cursor-pointer items-center justify-center"
+          onClick={() => handleSave()}
+        >
+          <SaveIcon />
+        </div>
+      )}
     </div>
   )
 }

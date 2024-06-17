@@ -6,7 +6,12 @@ import timeAgo from 'utils/time'
 import ScandalAndMoney from './ScandalAndMoney'
 import ButtonHanle from './ButtonHanle'
 
-function MainOrder({ posts }: { posts: IPost[] }) {
+interface IProps {
+  posts: IPost[]
+  isSaved?: boolean
+}
+
+function MainOrder({ posts, isSaved = false }: IProps) {
   return (
     <>
       {posts &&
@@ -21,16 +26,18 @@ function MainOrder({ posts }: { posts: IPost[] }) {
               >
                 <span className="name item-m3">
                   {item.name}
-                  <span className={`${item?.isNew ? 'is-new' : 'is-old'}`}>
-                    ({timeAgo(new Date(item.created_at))})
-                  </span>
+                  {!isSaved && (
+                    <span className={`${item?.isNew ? 'is-new' : 'is-old'}`}>
+                      ({timeAgo(new Date(item.created_at))})
+                    </span>
+                  )}
                 </span>
                 {distance && (
                   <i className="text-x text-red-600">Cách bạn: {distance}</i>
                 )}
                 <ScandalAndMoney content={content} />
                 <b className="item-m3 text-lg">{ReactHtmlParser(newContent)}</b>
-                <ButtonHanle item={item} />
+                <ButtonHanle item={item} isSaved={isSaved} />
               </div>
             </div>
           )

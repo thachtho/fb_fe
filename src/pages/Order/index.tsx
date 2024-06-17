@@ -6,9 +6,11 @@ import OrderSave from './components/OderSave'
 import { useGetMessage, useGetPost } from './hooks/useGetMessage'
 import './index.scss'
 import useOrder from './state'
+import useOrderSave from './state/orderSave'
 
 function OrderPage() {
   const { posts } = useOrder()
+  const { isOpenModalOrderSave } = useOrderSave()
   useGetPost()
   useGetMessage()
 
@@ -22,7 +24,7 @@ function OrderPage() {
       ) : (
         <>
           <MainOrder posts={posts} />
-          <OrderSave />
+          {isOpenModalOrderSave && <OrderSave />}
         </>
       )}
     </>
