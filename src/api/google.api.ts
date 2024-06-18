@@ -5,7 +5,7 @@ export const getDistance = async (input: {
   long: any
   address: string | null
 }) => {
-  const data = await http.post('http://localhost:3000/api/distance', input)
+  const data = await http.post('/distance', input)
 
   return data.data
 }
