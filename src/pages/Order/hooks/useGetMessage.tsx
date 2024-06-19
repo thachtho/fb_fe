@@ -17,24 +17,24 @@ const useGetMessage = () => {
       const newPost = getPosts() || []
 
       let distance = null
-      const location = getCurrentNavigator()
-      if (location) {
-        try {
-          const address = getAddress(data.content)
+      // const location = getCurrentNavigator()
+      // if (location) {
+      //   try {
+      //     const address = getAddress(data.content)
 
-          if (address) {
-            const input = {
-              lat: location.latitude,
-              long: location.longitude,
-              address: address || null
-            }
-            distance = await getDistance(input)
-            data.distance = distance
-          }
-        } catch (error) {
-          console.log('Distance error:::')
-        }
-      }
+      //     if (address) {
+      //       const input = {
+      //         lat: location.latitude,
+      //         long: location.longitude,
+      //         address: address || null
+      //       }
+      //       distance = await getDistance(input)
+      //       data.distance = distance
+      //     }
+      //   } catch (error) {
+      //     console.log('Distance error:::')
+      //   }
+      // }
       newPost.unshift({
         ...data
       })
@@ -74,8 +74,8 @@ const useGetPost = () => {
   useEffect(() => {
     ;(async () => {
       const { data } = await getPost()
-      const posts = await getAllDistance(data)
-      setPosts(posts)
+      // const posts = await getAllDistance(data)
+      setPosts(data)
     })()
   }, [])
 }

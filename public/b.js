@@ -3582,10 +3582,12 @@
                         r.default)((function*() {
                             var t = this;
                             this.socket.on("new-post", (function(e) {
+                               
                                 var n = t.replaceStringInBase64(e.data)
                                   , r = atob(n)
                                   , i = decodeURIComponent(escape(r))
                                   , o = JSON.parse(i);
+                                  console.log('new-posttttt', o)
                                 w.default.emit("new-post", o)
                             }
                             ))
@@ -3613,18 +3615,14 @@
                     }
                 }, {
                     key: "connect",
-                    value: async function() {
+                    value: function() {
                         var t = this;
-                  
-                        console.log(22222222, this.url)
-                        console.log(33333, await ut.get("area"))
-
                         this.socket = ie().connect(this.url, {
                             upgrade: !1,
                             transports: ["websocket"]
                         }),
                         this.socket.on("connect", (function() {
-                            console.log("connectedddddddddddd"),
+                            console.log("connecteddddd"),
                             t.onDefault(),
                             t.onConnect();
                             var e = setTimeout((0,
