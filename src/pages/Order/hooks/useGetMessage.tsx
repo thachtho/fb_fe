@@ -18,13 +18,13 @@ const useGetMessage = () => {
       const dataCheck = posts.find((item) =>item.postId === data.postId);
 
       if (dataCheck) {
-        let distance = null;
         const currentPosition = getCurrentNavigator()
-        const startNavigator = data.startNavigator
+        
         const locationA = {   
           latitude: currentPosition?.latitude,
           longitude: currentPosition?.longitude
         }
+        const startNavigator = data.startNavigator
         const { lat, lng } = startNavigator || {}
         const locationB = {   
           latitude: lat,
@@ -32,7 +32,7 @@ const useGetMessage = () => {
         }
 
         if (locationA && locationB.latitude !== 0 && locationB.longitude.length !== 0) {
-          distance = calculateDistance(locationA, locationB)
+          const distance = calculateDistance(locationA, locationB)
           dataCheck.distance = parseFloat(distance.toFixed(1));
         }
 
@@ -54,43 +54,33 @@ const useGetPost = () => {
   const { setPosts } = useOrder()
 
   const getAllDistanceAsync = async (posts: IPost[]) => {
-    const location = getCurrentNavigator()
+    const currentPosition = getCurrentNavigator()
+    const locationA = {   
+      latitude: currentPosition?.latitude,
+      longitude: currentPosition?.longitude
+    }
 
-    const postNotNullAddress = posts.map((item) => {
-      return { ...item, address: getAddress(item.content) || null }
-    }).filter((item) => item.address)
-    const apis = postNotNullAddress.map((item) => {
-      const input = {
-        lat: location?.latitude,
-        long: location?.longitude,
-        address: getAddress(item.content) || null
+    for (const post of posts) {
+      const startNavigator = post.startNavigator
+      const { lat, lng } = startNavigator || {}
+      const locationB = {   
+        latitude: lat,
+        longitude: lng 
       }
 
-      return getDistance(input)
-    })
-    
-    const responseDistance = (await Promise.all(apis))
-    const newPostNotNullAddress = postNotNullAddress.map((item, i)  => {
-      return {
-        ...item, distance: responseDistance[i]
+      if (locationA && locationB.latitude !== 0 && locationB.longitude.length !== 0) {
+        const distance = calculateDistance(locationA, locationB)
+        post.distance = parseFloat(distance.toFixed(1));
       }
-    })
+    }
 
-    const newDataPosts = posts.map((item, i) => {
-      const postDistance = newPostNotNullAddress.find(item1 => item1.postId === item.postId) 
-
-      return {
-        ...item, ...postDistance
-      }
-    })
-    setPosts(newDataPosts)
+    setPosts([...posts])
   }
 
   useEffect(() => {
     ;(async () => {
       const { data } = await getPost()
-      setPosts(data)
-      // await getAllDistanceAsync(data)
+      await getAllDistanceAsync(data)
     })()
   }, [])
 }
