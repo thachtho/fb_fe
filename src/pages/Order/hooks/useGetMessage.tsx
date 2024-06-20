@@ -61,16 +61,21 @@ const useGetPost = () => {
     }
 
     for (const post of posts) {
-      const startNavigator = post.startNavigator
-      const { lat, lng } = startNavigator || {}
-      const locationB = {   
-        latitude: lat,
-        longitude: lng 
-      }
+      try {
+        const startNavigator = post.startNavigator
+        const { lat, lng } = startNavigator || {}
+        const locationB = {   
+          latitude: lat,
+          longitude: lng 
+        }
 
-      if (locationA && locationB.latitude !== 0 && locationB.longitude !== 0) {
-        const distance = calculateDistance(locationA, locationB)
-        post.distance = parseFloat(distance.toFixed(1));
+        if (locationA && (locationB?.latitude && locationB?.latitude !== 0) && (locationB?.longitude && locationB?.longitude !== 0)) {
+          const distance = calculateDistance(locationA, locationB)
+
+          post.distance = distance ? parseFloat(distance.toFixed(1)) : null;
+        }       
+      } catch (error) {
+        return null
       }
     }
 
@@ -81,6 +86,7 @@ const useGetPost = () => {
     ;(async () => {
       const { data } = await getPost()
       await getAllDistanceAsync(data)
+      // setPosts(data);
     })()
   }, [])
 }
