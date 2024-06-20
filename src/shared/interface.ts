@@ -7,7 +7,8 @@ interface IPost {
   postId: string
   groupId: string
   isNew?: boolean
-  distance?: string | null
+  distance?: number | null,
+  startNavigator?: { lat: any, lng: any }
 }
 
 export interface IDistance {

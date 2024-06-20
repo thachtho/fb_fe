@@ -4,6 +4,7 @@ import { regexPhoneNumber } from '../utils'
 import SaveIcon from 'components/icons/Save'
 import useLocalStorage from 'hooks/useLocalstorage'
 import { toast } from 'react-toastify'
+import { LOCAL_STORAGE } from 'shared/constant'
 
 interface IProps {
   item: IPost
@@ -31,7 +32,7 @@ function ButtonHandle({ item, isSaved = false }: IProps) {
 
   const handleSave = (isToast = true) => {
     let arrLocal = []
-    const dataLocal = getLocalStorage('orderSave')
+    const dataLocal = getLocalStorage(LOCAL_STORAGE.ORDER_SAVE)
 
     if (dataLocal) {
       arrLocal = JSON.parse(dataLocal)
@@ -49,7 +50,7 @@ function ButtonHandle({ item, isSaved = false }: IProps) {
         })
       }
 
-      return setLocalStorage('orderSave', JSON.stringify(arrLocal))
+      return setLocalStorage(LOCAL_STORAGE.ORDER_SAVE, JSON.stringify(arrLocal))
     }
   }
   return (

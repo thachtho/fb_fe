@@ -1,4 +1,6 @@
 import { danang } from 'city/danang'
+import { IDistance } from 'shared/interface';
+import { getDistance } from 'geolib';
 
 const handleRemoveSpecialCharactersContent = (content: string) => {
   return content.replace(/<br\s*class="html-br">/g, ', ')
@@ -73,10 +75,20 @@ const getStreet = (streets: string[], content: string) => {
   return null
 }
 
+function calculateDistance(locationA: IDistance, locationB: IDistance) {
+    const distance = getDistance(
+      locationA,
+      locationB
+    );
+
+    return distance / 1000;
+}
+
 export {
   getAdvanceMoney,
   getFees,
   handleRemoveSpecialCharactersContent,
   regexPhoneNumber,
-  getAddress
+  getAddress,
+  calculateDistance
 }

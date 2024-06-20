@@ -5,4 +5,11 @@ const CONSTANT = {
   // URL_SOCKET: 'http://localhost:3000'
 }
 
+enum LOCAL_STORAGE  {
+  ORDER_SAVE = 'orderSave'
+}
+
 export default CONSTANT
+export {
+  LOCAL_STORAGE
+}

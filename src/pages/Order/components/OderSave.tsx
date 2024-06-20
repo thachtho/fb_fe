@@ -4,6 +4,7 @@ import MainOrder from './MainOrder'
 import { DeleteOutlined } from '@ant-design/icons'
 import useLocalStorage from 'hooks/useLocalstorage'
 import { toast } from 'react-toastify'
+import { LOCAL_STORAGE } from 'shared/constant'
 
 const OrderSave = () => {
   const { isOpenModalOrderSave, setIsOpenModalOrderSave, posts } =
@@ -37,7 +38,7 @@ const Title = () => {
   useOrderSave()
   const { removeLocalStorage } = useLocalStorage()
   const removelAll = () => {
-    removeLocalStorage('orderSave')
+    removeLocalStorage(LOCAL_STORAGE.ORDER_SAVE)
     toast('Xóa thành công!', {
       autoClose: 500
     })

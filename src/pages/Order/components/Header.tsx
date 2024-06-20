@@ -3,6 +3,7 @@ import SaveIcon from 'components/icons/Save'
 import useLocalStorage from 'hooks/useLocalstorage'
 import useOrderSave from '../state/orderSave'
 import { IPost } from 'shared/interface'
+import { LOCAL_STORAGE } from 'shared/constant'
 
 function Header() {
   const { setIsOpenModalOrderSave, setPosts } = useOrderSave()
@@ -14,7 +15,7 @@ function Header() {
 
   const handleSaved = () => {
     let arrLocal = []
-    const dataLocal = getLocalStorage('orderSave')
+    const dataLocal = getLocalStorage(LOCAL_STORAGE.ORDER_SAVE)
 
     if (dataLocal) {
       arrLocal = JSON.parse(dataLocal)
