@@ -68,7 +68,7 @@ const useGetPost = () => {
         longitude: lng 
       }
 
-      if (locationA && locationB.latitude !== 0 && locationB.longitude.length !== 0) {
+      if (locationA && locationB.latitude !== 0 && locationB.longitude !== 0) {
         const distance = calculateDistance(locationA, locationB)
         post.distance = parseFloat(distance.toFixed(1));
       }
