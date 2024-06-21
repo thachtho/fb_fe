@@ -43,9 +43,37 @@ const useGetMessage = () => {
   
       setPosts([...posts])
     }
-    socket?.on('postMessage', async (data: IPost[]) => {
-      const newPosts = data.filter(item => item.content.length > 0)
-      getAllDistanceAsync(newPosts)
+
+    const getDistanceV1 = async (data: IPost) => {
+      const newPost = getPosts() || []
+      let distance = null
+      const location = getCurrentNavigator()
+      if (location) {
+        try {
+          const address = getAddress(data.content)
+  
+          if (address) {
+            const input = {
+              lat: location.latitude,
+              long: location.longitude,
+              address: address || null
+            }
+            distance = await getDistance(input)
+            data.distance = distance
+          }
+        } catch (error) {
+          console.log('Distance error:::')
+        }
+      }
+      newPost.unshift({
+        ...data
+      })
+      setPosts(newPost)
+    }
+    socket?.on('postMessage', async (data: IPost) => {
+      getDistanceV1(data)
+      // const newPosts = data.filter(item => item.content.length > 0)
+      // getAllDistanceAsync(newPosts)
       // const posts = getPosts() || [];
       // const dataCheck = posts.find((item) =>item.postId === data.postId);
 
@@ -87,12 +115,6 @@ const useGetPost = () => {
 
   const getAllDistanceAsync = async (posts: IPost[]) => {
     const currentPosition = getCurrentNavigator()
-
-    // if (!currentPosition?.latitude || !currentPosition?.longitude) {
-    //   alert('Chưa bật vị trí ông cố nội ơi!');
-      
-    //   return setPosts([...posts])
-    // }
 
     const locationA = {   
       latitude: currentPosition?.latitude,
