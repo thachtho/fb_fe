@@ -143,11 +143,35 @@ const useGetPost = () => {
     setPosts([...posts])
   }
 
+  const getAllDistanceAsyncV1 = async (posts: IPost[]) => {
+    const currentPosition = getCurrentNavigator()
+    const locationA = {   
+      latitude: currentPosition?.latitude,
+      longitude: currentPosition?.longitude
+    }
+
+    for (const post of posts) {
+      const startNavigator = post.startNavigator
+      const { lat, lng } = startNavigator || {}
+      const locationB = {   
+        latitude: lat,
+        longitude: lng 
+      }
+
+      if (locationA && locationB.latitude !== 0 && locationB.longitude.length !== 0) {
+        const distance = calculateDistance(locationA, locationB)
+        post.distance = parseFloat(distance.toFixed(1));
+      }
+    }
+
+    setPosts([...posts])
+  }
+
   useEffect(() => {
     ;(async () => {
       const { data } = await getPost()
       const newPosts = data.filter(item => item.content.length > 0)
-      await getAllDistanceAsync(newPosts)
+      await getAllDistanceAsyncV1(newPosts)
       // setPosts(data);
     })()
   }, [])
