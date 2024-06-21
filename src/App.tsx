@@ -27,30 +27,34 @@ function App() {
     }
   }, []);
 
-  return (
-    <Routes>
-        <Route path="/signin" element={<SignIn />} />
-        <Route>
-          <Route index element={<Main />} />
-        </Route>
-        <Route path="*" element={<Main />} />
-      </Routes>
-  )
-}
-const Main = () => {
   const handleRedirectZalo = () => {
     window.open('https://zalo.me/g/jzvyin775')
   }
 
   return (
     <div>
+      <Routes>
+        <Route path="/signin" element={<SignIn />} />
+        <Route>
+          <Route index element={<Main />} />
+        </Route>
+        <Route path="*" element={<Main />} />
+      </Routes>
+            <div
+            className="fixed bottom-14 right-2"
+            onClick={() => handleRedirectZalo()}
+          >
+            <img src={kittenHeader} style={{ width: '70px' }} />
+          </div>
+    </div>
+
+  )
+}
+const Main = () => {
+  return (
+    <div>
       <OrderPage />
-      <div
-        className="fixed bottom-14 right-2"
-        onClick={() => handleRedirectZalo()}
-      >
-        <img src={kittenHeader} style={{ width: '70px' }} />
-      </div>
+
     </div>
   )
 }
