@@ -33,7 +33,7 @@ function MainOrder({ posts, isSaved = false }: IProps) {
                   )}
                 </span>
                 {distance && (
-                  <i className="text-x text-red-600">Cách bạn: {distance} km</i>
+                  <i className="text-x text-red-600">Cách bạn: {distance}</i>
                 )}
                 <ScandalAndMoney content={content} />
                 <b className="item-m3 text-lg">{ReactHtmlParser(newContent)}</b>
