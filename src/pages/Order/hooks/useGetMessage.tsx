@@ -171,8 +171,8 @@ const useGetPost = () => {
     ;(async () => {
       const { data } = await getPost()
       const newPosts = data.filter(item => item.content.length > 0)
+      setPosts(data);
       await getAllDistanceAsyncV1(newPosts)
-      // setPosts(data);
     })()
   }, [])
 }
