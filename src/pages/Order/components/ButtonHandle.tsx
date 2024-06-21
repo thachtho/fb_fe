@@ -4,7 +4,8 @@ import { regexPhoneNumber } from '../utils'
 import SaveIcon from 'components/icons/Save'
 import useLocalStorage from 'hooks/useLocalstorage'
 import { toast } from 'react-toastify'
-import { LOCAL_STORAGE } from 'shared/constant'
+import { LOCAL_STORAGE } from 'shared/enum'
+
 
 interface IProps {
   item: IPost

@@ -1,3 +1,8 @@
+export enum LOCAL_STORAGE  {
+    ORDER_SAVE = 'orderSave',
+    USER_INFO = 'userInfo'
+}
+
 const notRequired = () => {
     return `không được để trống!.`
 }

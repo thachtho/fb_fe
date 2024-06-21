@@ -10,12 +10,14 @@ import Logo from '../../../images/logo/logo.svg';
 import { login } from "api/auth.api";
 import useLocalStorage from "hooks/useLocalstorage";
 import useValidator from "hooks/useValidator";
-import { LOCAL_STORAGE } from "shared/constant";
 import { ILogin } from "shared/interface";
 import useApp from "state/useApp";
 import useSocket from "hooks/useSocket";
+import { LOCAL_STORAGE } from "shared/enum";
+import useLogin from "../state";
 
 const SignIn = () => {
+  const { setIsLoginScreen } = useLogin()
   const navigation = useNavigate();
   const { setUserInfo } = useApp();
   const { validator } = useValidator()
@@ -38,9 +40,15 @@ const SignIn = () => {
     } catch (error: any) {
       const statusCode = error?.response?.data?.statusCode 
       
-      if (statusCode === 401) {
-        toast.error('Tên đăng nhập hoặc mật khẩu không chính xác!')
+      if (statusCode === 403) {
+        return toast.error('Tên đăng nhập hoặc mật khẩu không chính xác!', {
+          autoClose: 500
+        })
       }
+
+      return toast.error('Lỗi hệ thống!', {
+        autoClose: 500
+      })
     }
   }
 
@@ -50,26 +58,20 @@ const SignIn = () => {
     }
   }, [])
 
+  const redirectRegister = () => {
+    setIsLoginScreen(false)
+  }
+
 
   return (
     <>
       {
-        // !storedValue ? <>
-          <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark flex justify-center items-center">
-            <div className="flex flex-wrap items-center">
-              <div className="hidden w-full xl:block xl:w-1/2">
-                <div className="py-17.5 px-26 text-center">
-                  <Link className="mb-5.5 inline-block" to="/">
-                    <img className="hidden dark:block" src={Logo} alt="Logo" />
-                    <img className="dark:hidden" src={LogoDark} alt="Logo" />
-                  </Link>
+          <div className="bg-white mt-20">
+            <div>
 
-                </div>
-              </div>
-
-              <div className="w-full border-stroke dark:border-strokedark xl:w-1/2 xl:border-l-2">
+              <div className="">
                 <div className="w-full p-4 sm:p-12.5 xl:p-17.5">
-                  <h2 className="mb-9 text-2xl font-bold text-black dark:text-white sm:text-title-xl2">
+                  <h2 className="text-center mb-9 text-2xl font-bold text-black dark:text-white sm:text-title-xl2">
                     Đăng nhập
                   </h2>
 
@@ -96,7 +98,7 @@ const SignIn = () => {
                       </label>
                       <div className="relative">
                         <input
-                          {...register("password", { required: true, maxLength: 20, minLength: 4 })}
+                          {...register("password", { required: true, maxLength: 20, minLength: 1 })}
                           type="password"
                           placeholder="Nhập mật khẩu"
                           className="w-full rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
@@ -107,19 +109,19 @@ const SignIn = () => {
                     </div>
                     
 
-                    <div className="mb-5">
+                    <div className="mb-5 flex flex-col justify-center items-center">
                       <input
                         type="submit"
                         value="Đăng nhập"
                         className="w-full cursor-pointer rounded-lg border border-primary bg-primary p-4 text-white transition hover:bg-opacity-90 bg-emerald-600"
                       />
+                      <span className="mt-5 text-blue-600 cursor-pointer" onClick={() => redirectRegister()}>Đăng ký</span>
                     </div>
                   </form>
                 </div>
               </div>
             </div>
           </div>
-        // </> : <></> 
       }
     </>
   );

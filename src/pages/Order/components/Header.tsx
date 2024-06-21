@@ -3,9 +3,10 @@ import SaveIcon from 'components/icons/Save'
 import useLocalStorage from 'hooks/useLocalstorage'
 import useOrderSave from '../state/orderSave'
 import { IPost } from 'shared/interface'
-import { LOCAL_STORAGE } from 'shared/constant'
+
 import { useNavigate } from 'react-router-dom'
 import useSocket from 'hooks/useSocket'
+import { LOCAL_STORAGE } from 'shared/enum'
 
 function Header() {
   const navigation = useNavigate();

@@ -4,7 +4,8 @@ import MainOrder from './MainOrder'
 import { DeleteOutlined } from '@ant-design/icons'
 import useLocalStorage from 'hooks/useLocalstorage'
 import { toast } from 'react-toastify'
-import { LOCAL_STORAGE } from 'shared/constant'
+import { LOCAL_STORAGE } from 'shared/enum'
+
 
 const OrderSave = () => {
   const { isOpenModalOrderSave, setIsOpenModalOrderSave, posts } =

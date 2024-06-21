@@ -1,14 +1,14 @@
+import useLocalStorage from 'hooks/useLocalstorage'
+import useSetNavigator from 'hooks/useNavigator'
+import useSocket from 'hooks/useSocket'
+import Auth from 'pages/Auth'
 import OrderPage from 'pages/Order'
+import { useEffect } from 'react'
+import { Route, Routes, useNavigate } from 'react-router-dom'
+import { LOCAL_STORAGE } from 'shared/enum'
+import useApp from 'state/useApp'
 import kittenHeader from '../public/zalo.png'
 import './app.scss'
-import useSetNavigator from 'hooks/useNavigator'
-import { Route, Routes, useNavigate } from 'react-router-dom'
-import SignIn from 'pages/Auth/Login'
-import { useEffect } from 'react'
-import useLocalStorage from 'hooks/useLocalstorage'
-import { LOCAL_STORAGE } from 'shared/constant'
-import useApp from 'state/useApp'
-import useSocket from 'hooks/useSocket'
 
 function App() {
   const navigation = useNavigate();
@@ -34,7 +34,7 @@ function App() {
   return (
     <div>
       <Routes>
-        <Route path="/signin" element={<SignIn />} />
+        <Route path="/signin" element={<Auth />} />
         <Route>
           <Route index element={<Main />} />
         </Route>

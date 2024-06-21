@@ -1,4 +1,4 @@
-import { LOCAL_STORAGE } from "shared/constant"
+import { LOCAL_STORAGE } from "shared/enum"
 
 function useLocalStorage() {
   const getLocalStorage = (key: LOCAL_STORAGE) => {
