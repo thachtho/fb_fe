@@ -44,7 +44,8 @@ const useGetMessage = () => {
       setPosts([...posts])
     }
     socket?.on('postMessage', async (data: IPost[]) => {
-      getAllDistanceAsync(data)
+      const newPosts = data.filter(item => item.content.length > 0)
+      getAllDistanceAsync(newPosts)
       // const posts = getPosts() || [];
       // const dataCheck = posts.find((item) =>item.postId === data.postId);
 
