@@ -41,8 +41,8 @@ const SignIn = () => {
       const statusCode = error?.response?.data?.statusCode 
       
       if (statusCode === 403) {
-        return toast.error('Tên đăng nhập hoặc mật khẩu không chính xác!', {
-          autoClose: 500
+        return toast.error(error?.response?.data?.message, {
+          autoClose: 5000
         })
       }
 
