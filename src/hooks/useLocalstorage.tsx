@@ -1,5 +1,7 @@
+import { LOCAL_STORAGE } from "shared/constant"
+
 function useLocalStorage() {
-  const getLocalStorage = (key: string) => {
+  const getLocalStorage = (key: LOCAL_STORAGE) => {
     return localStorage.getItem(key)
   }
 
@@ -11,10 +13,15 @@ function useLocalStorage() {
     localStorage.removeItem(key)
   }
 
+  const clearLocalStorage = () => {
+    localStorage.clear()
+  }
+
   return {
     setLocalStorage,
     getLocalStorage,
-    removeLocalStorage
+    removeLocalStorage,
+    clearLocalStorage
   }
 }
 

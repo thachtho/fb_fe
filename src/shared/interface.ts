@@ -16,4 +16,9 @@ export interface IDistance {
   longitude: any
 }
 
-export type { IPost }
+
+interface ILogin {
+  phone: string;
+  password: string;
+}
+export type { IPost, ILogin }

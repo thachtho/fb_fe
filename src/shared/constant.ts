@@ -6,7 +6,8 @@ const CONSTANT = {
 }
 
 enum LOCAL_STORAGE  {
-  ORDER_SAVE = 'orderSave'
+  ORDER_SAVE = 'orderSave',
+  USER_INFO = 'userInfo'
 }
 
 export default CONSTANT
