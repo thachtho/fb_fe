@@ -88,11 +88,11 @@ const useGetPost = () => {
   const getAllDistanceAsync = async (posts: IPost[]) => {
     const currentPosition = getCurrentNavigator()
 
-    if (!currentPosition?.latitude || !currentPosition?.longitude) {
-      alert('Chưa bật vị trí ông cố nội ơi!');
+    // if (!currentPosition?.latitude || !currentPosition?.longitude) {
+    //   alert('Chưa bật vị trí ông cố nội ơi!');
       
-      return setPosts([...posts])
-    }
+    //   return setPosts([...posts])
+    // }
 
     const locationA = {   
       latitude: currentPosition?.latitude,
