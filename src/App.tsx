@@ -8,6 +8,7 @@ import { useEffect } from 'react'
 import useLocalStorage from 'hooks/useLocalstorage'
 import { LOCAL_STORAGE } from 'shared/constant'
 import useApp from 'state/useApp'
+import useSocket from 'hooks/useSocket'
 
 function App() {
   const navigation = useNavigate();
@@ -15,9 +16,11 @@ function App() {
   const { getLocalStorage } = useLocalStorage()
   const { setUserInfo } = useApp()
   const storeExitUser = getLocalStorage(LOCAL_STORAGE.USER_INFO)
+  const { connect, disConnect } = useSocket()
 
   useEffect(() => {
     if (storeExitUser) {
+      connect()
       setUserInfo(JSON.parse(storeExitUser));
     } else {
       navigation('/signin');

@@ -4,14 +4,14 @@ import { create } from 'zustand'
 
 type SocketType = {
   socket: Socket | null,
-  connect: () => void
+  connect: () => void,
+  disConnect: () => void
 }
 
-
-const useSocket = create<SocketType>((set) => ({
+const useSocket = create<SocketType>((set, get) => ({
   socket: null,
-  connect: () =>
-  set(() => ({ socket: connectSocket() })),
+  connect: () => set(() => ({ socket: connectSocket() })),
+  disConnect: () => get().socket?.disconnect(),
 }))
 
 const connectSocket = () => {

@@ -5,11 +5,13 @@ import useOrderSave from '../state/orderSave'
 import { IPost } from 'shared/interface'
 import { LOCAL_STORAGE } from 'shared/constant'
 import { useNavigate } from 'react-router-dom'
+import useSocket from 'hooks/useSocket'
 
 function Header() {
   const navigation = useNavigate();
   const { setIsOpenModalOrderSave, setPosts } = useOrderSave()
   const { getLocalStorage, clearLocalStorage } = useLocalStorage()
+  const { disConnect } = useSocket()
 
   const handleSetting = () => {
     alert('Đang phát triển!')
@@ -29,6 +31,7 @@ function Header() {
 
   const logOut = () => {
     clearLocalStorage()
+    disConnect()
     navigation('/signin');
   }
   return (
