@@ -43,7 +43,7 @@ function Register() {
     }
 
     const redirectLogin = () => {
-
+        setIsLoginScreen(true)
     }
 
     const onChange = (value: string, key: OptionKey, func: Function) => {
