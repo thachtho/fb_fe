@@ -14,15 +14,17 @@ function useCheckCrashUser() {
         const isCheckCrash = getIsCheckCrash()
 
         if (isCheckCrash) {
-            const userLOcal = getLocalStorage(LOCAL_STORAGE.USER_INFO)
+            const userLocal = JSON.parse(getLocalStorage(LOCAL_STORAGE.USER_INFO) || 'null');
 
-            if (userLOcal) {
-                const userLocal = JSON.parse(userLOcal)
-                const { data: user } = await getUserByPhone(userLocal.phone)
+            if (userLocal) {
+                try {
+                    const { data: user } = await getUserByPhone(userLocal.phone)
 
-                if (user && (user as any[]).length === 0) {
-                    return logOut()
-                }  
+                    if (!user || (user && (user as any[]).length === 0)) {
+                        return logOut()
+                    }                      
+                } catch (error) {}
+
             }          
         }
     }
@@ -36,7 +38,7 @@ function useCheckCrashUser() {
         // Thiết lập interval và lưu lại ID của nó
         const intervalId = setInterval(() => {
             callCrashUser();
-        }, 5000);
+        }, 10000);
 
         // Dọn dẹp interval khi component unmount
         return () => clearInterval(intervalId);
