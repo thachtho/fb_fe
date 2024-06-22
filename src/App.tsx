@@ -10,17 +10,20 @@ import useApp from 'state/useApp'
 import kittenHeader from '../public/zalo.png'
 import './app.scss'
 import AcceptMember from 'pages/Admin/AcceptMember'
+import useCheckCrashUser from 'hooks/useCheckCrashUser'
 
 function App() {
   const navigation = useNavigate();
   useSetNavigator()
+  useCheckCrashUser()
   const { getLocalStorage } = useLocalStorage()
-  const { setUserInfo } = useApp()
+  const { setUserInfo, setIsCheckCrash } = useApp()
   const storeExitUser = getLocalStorage(LOCAL_STORAGE.USER_INFO)
-  const { connect, disConnect } = useSocket()
+  const { connect } = useSocket()
 
   useEffect(() => {
     if (storeExitUser) {
+      setIsCheckCrash(true)
       connect()
       setUserInfo(JSON.parse(storeExitUser));
     } else {

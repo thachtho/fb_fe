@@ -19,7 +19,7 @@ import useLogin from "../state";
 const SignIn = () => {
   const { setIsLoginScreen } = useLogin()
   const navigation = useNavigate();
-  const { setUserInfo } = useApp();
+  const { setUserInfo, setIsCheckCrash } = useApp();
   const { validator } = useValidator()
   const { getLocalStorage, setLocalStorage } = useLocalStorage()
   const { connect } = useSocket()
@@ -29,6 +29,7 @@ const SignIn = () => {
   const onSubmit: SubmitHandler<ILogin> = async (data) => {
     try {
       const { data: loginResponse } = await login(data)
+
       const userInfo = {
         refreshToken: loginResponse?.refresh_token,
         phone: data.phone
@@ -36,6 +37,7 @@ const SignIn = () => {
       setLocalStorage(LOCAL_STORAGE.USER_INFO, JSON.stringify(userInfo))
       setUserInfo(userInfo);
       connect();
+      setIsCheckCrash(true)
       navigation(`/`);
     } catch (error: any) {
       const statusCode = error?.response?.data?.statusCode 

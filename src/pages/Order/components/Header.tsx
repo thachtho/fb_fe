@@ -1,18 +1,16 @@
 import { AimOutlined, LogoutOutlined, SettingOutlined } from '@ant-design/icons'
 import SaveIcon from 'components/icons/Save'
 import useLocalStorage from 'hooks/useLocalstorage'
-import useOrderSave from '../state/orderSave'
 import { IPost } from 'shared/interface'
+import useOrderSave from '../state/orderSave'
 
-import { useNavigate } from 'react-router-dom'
-import useSocket from 'hooks/useSocket'
+import useAuth from 'hooks/useAuth'
 import { LOCAL_STORAGE } from 'shared/enum'
 
 function Header() {
-  const navigation = useNavigate();
   const { setIsOpenModalOrderSave, setPosts } = useOrderSave()
-  const { getLocalStorage, clearLocalStorage } = useLocalStorage()
-  const { disConnect } = useSocket()
+  const { getLocalStorage } = useLocalStorage()
+  const { logOut } = useAuth()
 
   const handleSetting = () => {
     alert('Đang phát triển!')
@@ -30,11 +28,6 @@ function Header() {
     setIsOpenModalOrderSave(true)
   }
 
-  const logOut = () => {
-    clearLocalStorage()
-    disConnect()
-    navigation('/signin');
-  }
   return (
     <div className="mt-3 flex justify-between items-center">
       <div className='text-white'>
