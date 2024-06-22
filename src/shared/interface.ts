@@ -24,6 +24,6 @@ interface ILogin {
 interface IUser {
   phone: string,
   password: string,
-  access: boolean
+  access?: boolean
 }
 export type { IPost, ILogin, IUser }
