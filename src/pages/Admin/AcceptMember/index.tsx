@@ -72,7 +72,7 @@ const AcceptMember: React.FC = () => {
           <Table
             columns={columns}
             dataSource={newMembers}
-            pagination={{ pageSize: 2 }} 
+            pagination={{ pageSize: 10 }} 
           />
         </div>
       }    
