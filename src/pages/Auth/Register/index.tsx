@@ -19,8 +19,7 @@ function Register() {
     const [option, setOption] = useState<IOption | null>(null)
     const [error, setError] = useState<IError | null>(null)
 
-    const handleSubmit = async (e: React.MouseEvent<HTMLInputElement, MouseEvent>) => {
-        e.preventDefault()
+    const handleSubmit = async () => {
         const isValidate = validate();
 
         if (isValidate) {
@@ -165,14 +164,12 @@ function Register() {
                         </div>
                         
 
-                        <div className="mb-5 flex flex-col justify-center items-center">
-                            <input
-                                type="submit"
-                                value="Đăng ký"
-                                className="w-full cursor-pointer rounded-lg border border-primary bg-primary p-4 text-white transition hover:bg-opacity-90 bg-emerald-600"
-                                onClick={(e) => handleSubmit(e)}
-                            />
-                            <span className="mt-5 text-blue-600 cursor-pointer" onClick={() => redirectLogin()}>Đăng nhập</span>
+                        <div className="mb-5 flex flex-col justify-center items-center"  onClick={() => handleSubmit()}>
+                            <span
+                                className="w-full cursor-pointer rounded-lg border border-primary bg-primary p-4 text-white transition hover:bg-opacity-90 bg-emerald-600 text-center"
+                               
+                            >Đăng ký</span>
+                            <span className="mt-5 text-blue-600 cursor-pointer text-center" onClick={() => redirectLogin()}>Đăng nhập</span>
                         </div>
                     </form>
                     </div>
