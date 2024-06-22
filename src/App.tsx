@@ -9,6 +9,7 @@ import { LOCAL_STORAGE } from 'shared/enum'
 import useApp from 'state/useApp'
 import kittenHeader from '../public/zalo.png'
 import './app.scss'
+import AcceptMember from 'pages/Admin/AcceptMember'
 
 function App() {
   const navigation = useNavigate();
@@ -38,14 +39,15 @@ function App() {
         <Route>
           <Route index element={<Main />} />
         </Route>
+        <Route path="/admin/accept-member" element={<AcceptMember />} />
         <Route path="*" element={<Main />} />
       </Routes>
-            <div
-            className="fixed bottom-14 right-2"
-            onClick={() => handleRedirectZalo()}
-          >
-            <img src={kittenHeader} style={{ width: '70px' }} />
-          </div>
+        <div
+          className="fixed bottom-14 right-2"
+          onClick={() => handleRedirectZalo()}
+        >
+          <img src={kittenHeader} style={{ width: '70px' }} />
+        </div>
     </div>
 
   )

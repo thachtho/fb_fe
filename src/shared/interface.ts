@@ -23,6 +23,7 @@ interface ILogin {
 
 interface IUser {
   phone: string,
-  password: string
+  password: string,
+  access: boolean
 }
 export type { IPost, ILogin, IUser }
