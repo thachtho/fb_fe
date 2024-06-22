@@ -56,6 +56,11 @@ const AcceptMember: React.FC = () => {
       },
     },
     {
+      title: 'Mật khẩu',
+      dataIndex: 'password',
+      render: (text: string) => <a>{text}</a>,
+    },
+    {
       title: 'Action',
       render: (_, record) => {
         return <div className='flex'>
