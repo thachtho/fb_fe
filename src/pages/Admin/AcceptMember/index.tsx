@@ -1,9 +1,10 @@
 import type { TableColumnsType } from 'antd';
 import { Button, Table } from 'antd';
+import { accepMember, deleteMember } from 'api/user.api';
 import React from 'react';
+import SearchMember from './components/Search';
 import useGetDataMembers from './hooks';
 import useAcceptMember, { IMember } from './state';
-import { accepMember, deleteMember } from 'api/user.api';
 
 const AcceptMember: React.FC = () => {
   const { members, setMembers } = useAcceptMember()
@@ -67,15 +68,21 @@ const AcceptMember: React.FC = () => {
   ];
   return (
     <>
-      {newMembers && newMembers?.length > 0 &&
+      
         <div className='mt-20 bg-white'>
-          <Table
-            columns={columns}
-            dataSource={newMembers}
-            pagination={{ pageSize: 10 }} 
-          />
+          <div className='flex justify-between'>
+            <div></div>
+            <SearchMember/>
+          </div>
+          {newMembers && newMembers?.length > 0 &&
+            <Table
+              columns={columns}
+              dataSource={newMembers}
+              pagination={{ pageSize: 10 }} 
+            />
+          }  
         </div>
-      }    
+       
     </>
   );
 };

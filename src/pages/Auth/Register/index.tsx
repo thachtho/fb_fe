@@ -1,9 +1,8 @@
-import { useState } from "react"
-import { isValidVietnamPhoneNumber } from "../utils"
 import { createUser } from "api/user.api"
+import { useState } from "react"
 import { toast } from "react-toastify"
-import { useNavigate } from "react-router-dom"
 import useLogin from "../state"
+import { isValidVietnamPhoneNumber } from "../utils"
 
 interface IOption {
     phone: string | null,
