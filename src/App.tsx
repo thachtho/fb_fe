@@ -32,7 +32,7 @@ function App() {
   }, []);
 
   const handleRedirectZalo = () => {
-    window.open('https://zalo.me/g/jzvyin775')
+    window.open('https://zalo.me/g/bfsdtu881')
   }
 
   return (
