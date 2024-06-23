@@ -19,7 +19,7 @@ function App() {
   const { getLocalStorage } = useLocalStorage()
   const { setUserInfo, setIsCheckCrash } = useApp()
   const storeExitUser = getLocalStorage(LOCAL_STORAGE.USER_INFO)
-  const { connect } = useSocket()
+  const { connect, disConnect } = useSocket()
 
   useEffect(() => {
     if (storeExitUser) {
@@ -29,6 +29,10 @@ function App() {
     } else {
       navigation('/signin');
     }
+
+    return (() => {
+      disConnect()
+    })
   }, []);
 
   const handleRedirectZalo = () => {
