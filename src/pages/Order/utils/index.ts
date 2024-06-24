@@ -61,13 +61,6 @@ const getStreet = (streets: string[], content: string) => {
     const data = lowerCaseStr.includes(lowerCaseSubStr)
 
     if (data) {
-      // const index = lowerCaseStr.indexOf(lowerCaseSubStr)
-      // if (index !== -1) {
-      // Lấy phần tử đúng trước ký tự đó
-      //   const preSubStr = content.substring(0, index).trim().split(' ').pop()
-
-      //   return `${preSubStr} ${street}`
-      // }
       return street
     }
   }
@@ -81,7 +74,7 @@ function calculateDistance(locationA: IDistance, locationB: IDistance) {
       locationB
     );
 
-    return distance / 1000;
+    return distance ? parseFloat((distance / 1000).toFixed(1)) : null;
 }
 
 export {

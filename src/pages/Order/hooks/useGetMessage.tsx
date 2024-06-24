@@ -47,20 +47,17 @@ const useGetMessage = () => {
     const getDistanceV1 = async (data: IPost) => {
       const newPost = getPosts() || []
       let distance = null
-      const location = getCurrentNavigator()
-      if (location) {
+      const currentPosition = getCurrentNavigator()
+      
+      const locationMe = {   
+        latitude: currentPosition?.latitude,
+        longitude: currentPosition?.longitude
+      }
+
+      if (locationMe && data?.location) {
         try {
-          const address = getAddress(data.content)
-  
-          if (address) {
-            const input = {
-              lat: location.latitude,
-              long: location.longitude,
-              address: address || null
-            }
-            distance = await getDistance(input)
-            data.distance = distance
-          }
+          distance = calculateDistance(locationMe, data?.location)
+          data.distance = distance
         } catch (error) {
           console.log('Distance error:::')
         }

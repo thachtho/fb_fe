@@ -9,6 +9,7 @@ interface IPost {
   isNew?: boolean
   distance?: number | null,
   startNavigator?: { lat: any, lng: any }
+  location?: IDistance
 }
 
 export interface IDistance {
