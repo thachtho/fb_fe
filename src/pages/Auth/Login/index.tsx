@@ -36,7 +36,7 @@ const SignIn = () => {
       }
       setLocalStorage(LOCAL_STORAGE.USER_INFO, JSON.stringify(userInfo))
       setUserInfo(userInfo);
-      connect();
+      connect(userInfo);
       setIsCheckCrash(true)
       navigation(`/`);
     } catch (error: any) {

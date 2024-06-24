@@ -19,20 +19,16 @@ function App() {
   const { getLocalStorage } = useLocalStorage()
   const { setUserInfo, setIsCheckCrash } = useApp()
   const storeExitUser = getLocalStorage(LOCAL_STORAGE.USER_INFO)
-  const { connect, disConnect } = useSocket()
+  const { connect } = useSocket()
 
   useEffect(() => {
     if (storeExitUser) {
       setIsCheckCrash(true)
-      connect()
+      connect(JSON.parse(storeExitUser))
       setUserInfo(JSON.parse(storeExitUser));
     } else {
       navigation('/signin');
     }
-
-    return (() => {
-      disConnect()
-    })
   }, []);
 
   const handleRedirectZalo = () => {

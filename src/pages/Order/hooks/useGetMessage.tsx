@@ -46,25 +46,25 @@ const useGetMessage = () => {
 
     const getDistanceV1 = async (data: IPost) => {
       const newPost = getPosts() || []
-      let distance = null
-      const location = getCurrentNavigator()
-      if (location) {
-        try {
-          const address = getAddress(data.content)
+      // let distance = null
+      // const location = getCurrentNavigator()
+      // if (location) {
+      //   try {
+      //     const address = getAddress(data.content)
   
-          if (address) {
-            const input = {
-              lat: location.latitude,
-              long: location.longitude,
-              address: address || null
-            }
-            distance = await getDistance(input)
-            data.distance = distance
-          }
-        } catch (error) {
-          console.log('Distance error:::')
-        }
-      }
+      //     if (address) {
+      //       const input = {
+      //         lat: location.latitude,
+      //         long: location.longitude,
+      //         address: address || null
+      //       }
+      //       distance = await getDistance(input)
+      //       data.distance = distance
+      //     }
+      //   } catch (error) {
+      //     console.log('Distance error:::')
+      //   }
+      // }
       newPost.unshift({
         ...data
       })

@@ -4,18 +4,21 @@ import { create } from 'zustand'
 
 type SocketType = {
   socket: Socket | null,
-  connect: () => void,
+  connect: (userInfo: any) => void,
   disConnect: () => void
 }
 
 const useSocket = create<SocketType>((set, get) => ({
   socket: null,
-  connect: () => set(() => ({ socket: connectSocket() })),
+  connect: (userInfo: any) => set(() => ({ socket: connectSocket(userInfo) })),
   disConnect: () => get().socket?.disconnect(),
 }))
 
-const connectSocket = () => {
-  const socket = io(CONSTANT.URL_SOCKET)
+const connectSocket = (userInfo: any) => {
+  const socket = io(CONSTANT.URL_SOCKET, {
+    query: { phone: userInfo?.phone },
+    secure: true,
+  })
   socket.on('connect', () => {
     console.log('Connected to server admin page!.')
   })
