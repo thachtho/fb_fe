@@ -101,7 +101,8 @@ const useGetPost = () => {
   useEffect(() => {
     ;(async () => {
       const { data } = await getPost()
-      await getAllDistanceAsyncV1(data)
+      const newPost = data.filter(item => (item.content || '').length > 0)
+      await getAllDistanceAsyncV1(newPost)
     })()
   }, [])
 }
