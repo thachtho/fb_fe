@@ -3,7 +3,7 @@ import { create } from 'zustand'
 
 type NavigatorType = {
   currentNavagator: IDistance | null
-  setCurrentNavigator: (posts: IDistance | null) => void
+  setCurrentNavigator: (currentNavagator: IDistance | null) => void
   getCurrentNavigator: () => IDistance | null
 }
 
