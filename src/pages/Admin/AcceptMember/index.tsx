@@ -7,7 +7,27 @@ import useGetDataMembers from './hooks';
 import useAcceptMember, { IMember } from './state';
 
 const AcceptMember: React.FC = () => {
-  const {  setMembers, members } = useAcceptMember()
+  const {  setMembers } = useAcceptMember()
+  let members = [
+    {
+    "id": "1",
+    "phone": "0963466269",
+    "password": "111111",
+    "access": true
+    },
+    {
+    "id": "2527",
+    "phone": "0766634729",
+    "password": "111111",
+    "access": true
+    },
+    {
+    "id": "50d1",
+    "phone": "0945260902",
+    "password": "111111",
+    "access": true
+    },
+  ]
 
   useGetDataMembers()
   const newMembers = members?.map((item) => {
@@ -47,6 +67,7 @@ const AcceptMember: React.FC = () => {
       fixed: 'left',
       dataIndex: 'phone',
       render: (text: string) => <a>{text}</a>,
+      responsive: ['sm', 'md', 'lg', 'xl'],
     },
     {
       title: 'Status',
@@ -57,12 +78,14 @@ const AcceptMember: React.FC = () => {
           { status ? 1 : 0 }
         </>
       },
+      responsive: ['xs', 'sm', 'md', 'lg', 'xl'],
     },
     {
       title: 'Mật khẩu',
       width: 100,
       dataIndex: 'password',
       render: (text: string) => <a>{text}</a>,
+      responsive: ['xs', 'sm', 'md', 'lg', 'xl'],
     },
     {
       title: 'Action',
@@ -74,6 +97,7 @@ const AcceptMember: React.FC = () => {
           <Button type="primary" onClick={() => remove(record.id)}>Xóa</Button>
         </div>
       },
+      responsive: ['xs', 'sm', 'md', 'lg', 'xl'],
     },
   ];
   
