@@ -4,46 +4,14 @@ import { useEffect } from 'react'
 import { IPost } from 'shared/interface'
 import useNavigator from 'state/navigator'
 import useOrder from '../state'
-import { getDistance } from 'api/google.api'
-import { calculateDistance, getAddress } from '../utils'
+import { calculateDistance } from '../utils'
 
 const useGetMessage = () => {
   const { socket } = useSocket()
   const { setPosts, getPosts } = useOrder()
   const { getCurrentNavigator } = useNavigator()
 
-
-
   useEffect(() => {
-    const getAllDistanceAsync = async (posts: IPost[]) => {
-      const currentPosition = getCurrentNavigator()
-      const locationA = {   
-        latitude: currentPosition?.latitude,
-        longitude: currentPosition?.longitude
-      }
-  
-      for (const post of posts) {
-        try {
-          const startNavigator = post.startNavigator
-          const { lat, lng } = startNavigator || {}
-          const locationB = {   
-            latitude: lat,
-            longitude: lng 
-          }
-  
-          if (locationA && (locationB?.latitude && locationB?.latitude !== 0) && (locationB?.longitude && locationB?.longitude !== 0)) {
-            const distance = calculateDistance(locationA, locationB)
-  
-            post.distance = distance ? parseFloat(distance.toFixed(1)) : null;
-          }       
-        } catch (error) {
-          return null
-        }
-      }
-  
-      setPosts([...posts])
-    }
-
     const getDistanceV1 = async (data: IPost) => {
       const newPost = getPosts() || []
       let distance = null

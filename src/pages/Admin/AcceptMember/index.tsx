@@ -71,6 +71,7 @@ const AcceptMember: React.FC = () => {
       },
     },
   ];
+  
   return (
     <>
       
