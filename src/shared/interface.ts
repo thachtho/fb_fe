@@ -8,8 +8,8 @@ interface IPost {
   groupId: string
   isNew?: boolean
   distance?: number | null,
-  startNavigator?: { lat: any, lng: any }
-  location?: IDistance
+  locationStart?: IDistance | null, 
+  locationEnd?: IDistance | null
 }
 
 export interface IDistance {

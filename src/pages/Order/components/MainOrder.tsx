@@ -5,6 +5,7 @@ import { handleRemoveSpecialCharactersContent } from '../utils'
 import timeAgo from 'utils/time'
 import ScandalAndMoney from './ScandalAndMoney'
 import ButtonHanle from './ButtonHandle'
+import Distance from './Distance'
 
 interface IProps {
   posts: IPost[]
@@ -25,16 +26,14 @@ function MainOrder({ posts, isSaved = false }: IProps) {
                 className={`latest-order-item ${item?.isNew ? 'new' : 'old'}`}
               >
                 <span className="name item-m3">
-                  {item.name}
+                  {ReactHtmlParser(item.name)}
                   {!isSaved && (
                     <span className={`${item?.isNew ? 'is-new' : 'is-old'}`}>
                       ({timeAgo(new Date(item.created_at))})
                     </span>
                   )}
                 </span>
-                {distance && (
-                  <i className="text-x text-red-600">Cách bạn: {distance} km</i>
-                )}
+                {distance && <Distance distance={distance}/> }
                 <ScandalAndMoney content={content} />
                 <b className="item-m3 text-lg">{ReactHtmlParser(newContent)}</b>
                 <ButtonHanle item={item} isSaved={isSaved} />
