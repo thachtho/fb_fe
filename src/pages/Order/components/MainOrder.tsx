@@ -17,7 +17,7 @@ function MainOrder({ posts, isSaved = false }: IProps) {
     <>
       {posts &&
         posts.map((item, i) => {
-          const { content, distance } = item
+          const { content, distance, distanceAB, time } = item
           const newContent = handleRemoveSpecialCharactersContent(content)
 
           return (
@@ -33,7 +33,7 @@ function MainOrder({ posts, isSaved = false }: IProps) {
                     </span>
                   )}
                 </span>
-                {distance && <Distance distance={distance}/> }
+                {distance && <Distance distance={distance} distanceAB={distanceAB} time={time}/> }
                 <ScandalAndMoney content={content} />
                 <b className="item-m3 text-lg">{ReactHtmlParser(newContent)}</b>
                 <ButtonHanle item={item} isSaved={isSaved} />

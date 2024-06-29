@@ -1,4 +1,4 @@
-import { IPost, ITimeOfPost } from "shared/interface"
+import { IPost } from "shared/interface"
 
 interface IProp extends Pick<IPost, 'distance' | 'time' | 'distanceAB'>  {}
 
