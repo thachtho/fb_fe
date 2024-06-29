@@ -15,6 +15,7 @@ import useApp from "state/useApp";
 import useSocket from "hooks/useSocket";
 import { LOCAL_STORAGE } from "shared/enum";
 import useLogin from "../state";
+import Provocative from "../components/Provocative";
 
 const SignIn = () => {
   const { setIsLoginScreen } = useLogin()
@@ -64,13 +65,12 @@ const SignIn = () => {
     setIsLoginScreen(false)
   }
 
-
   return (
     <>
       {
           <div className="bg-white mt-20">
             <div>
-
+              <Provocative />
               <div className="">
                 <div className="w-full p-4 sm:p-12.5 xl:p-17.5">
                   <h2 className="text-center mb-9 text-2xl font-bold text-black dark:text-white sm:text-title-xl2">

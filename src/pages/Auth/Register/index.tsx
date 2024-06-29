@@ -3,6 +3,7 @@ import { useState } from "react"
 import { toast } from "react-toastify"
 import useLogin from "../state"
 import { isValidVietnamPhoneNumber } from "../utils"
+import Provocative from "../components/Provocative"
 
 interface IOption {
     phone: string | null,
@@ -109,6 +110,7 @@ function Register() {
             <div>
                 <div className="">
                     <div className="w-full p-4 sm:p-12.5 xl:p-17.5">
+                    <Provocative />
                     <h2 className="text-center mb-9 text-2xl font-bold text-black dark:text-white sm:text-title-xl2">
                         Đăng ký
                     </h2>
