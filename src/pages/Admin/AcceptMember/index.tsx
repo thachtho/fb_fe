@@ -7,27 +7,7 @@ import useGetDataMembers from './hooks';
 import useAcceptMember, { IMember } from './state';
 
 const AcceptMember: React.FC = () => {
-  const {  setMembers } = useAcceptMember()
-  let members = [
-    {
-    "id": "1",
-    "phone": "0963466269",
-    "password": "111111",
-    "access": true
-    },
-    {
-    "id": "2527",
-    "phone": "0766634729",
-    "password": "111111",
-    "access": true
-    },
-    {
-    "id": "50d1",
-    "phone": "0945260902",
-    "password": "111111",
-    "access": true
-    },
-  ]
+  const {  setMembers, members } = useAcceptMember()
 
   useGetDataMembers()
   const newMembers = members?.map((item) => {
