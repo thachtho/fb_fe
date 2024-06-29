@@ -26,7 +26,7 @@ function MainOrder({ posts, isSaved = false }: IProps) {
                 className={`latest-order-item ${item?.isNew ? 'new' : 'old'}`}
               >
                 <span className="name item-m3">
-                  {ReactHtmlParser(item.name.replace('GOJO', ''))}
+                  {ReactHtmlParser(item.name.replace('G0J0', ''))}
                   {!isSaved && (
                     <span className={`${item?.isNew ? 'is-new' : 'is-old'}`}>
                       ({timeAgo(new Date(item.created_at))})
