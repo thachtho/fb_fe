@@ -9,8 +9,8 @@ function Distance({ distance }: IProp) {
         {distance && (
             <div className="flex">
                 <i className="text-x text-red-600">Cách bạn: {distance} km</i>
-                <span className="mx-2">|</span>
-                <i className="text-x text-red-600">(2km - 5 phút)</i>
+                {/* <span className="mx-2">|</span>
+                <i className="text-x text-red-600">(2km - 5 phút)</i> */}
             </div>
         )}
     </>
