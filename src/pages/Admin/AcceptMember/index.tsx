@@ -7,7 +7,30 @@ import useGetDataMembers from './hooks';
 import useAcceptMember, { IMember } from './state';
 
 const AcceptMember: React.FC = () => {
-  const { members, setMembers } = useAcceptMember()
+  const {  setMembers } = useAcceptMember()
+  const members: any[] = [
+    {
+    "phone": "0963466269",
+    "socketId": "ifNqppfkDn_zkCtAAAAB",
+    "password": '1'
+    },
+    {
+    "phone": "0931966546",
+    "socketId": "PwljdbC5Ipvns6RFAAFb",
+    "password": '1'
+    },
+    {
+    "phone": "0763715645",
+    "socketId": "YtuoQ7M5QEHEHmd6AAFs",
+    "password": '1'
+    },
+    {
+    "phone": "0905421093",
+    "socketId": "DNahJI4eUJ4vpO9aAAF0",
+    "password": '1'
+    }
+    ]
+
   useGetDataMembers()
   const newMembers = members?.map((item) => {
     return {
@@ -43,11 +66,13 @@ const AcceptMember: React.FC = () => {
   const columns: TableColumnsType<IMember> = [
     {
       title: 'Phone',
+      fixed: 'left',
       dataIndex: 'phone',
       render: (text: string) => <a>{text}</a>,
     },
     {
       title: 'Status',
+      width: 50,
       dataIndex: 'access',
       render: (status: boolean) => {
         return <>
@@ -57,11 +82,13 @@ const AcceptMember: React.FC = () => {
     },
     {
       title: 'Mật khẩu',
+      width: 100,
       dataIndex: 'password',
       render: (text: string) => <a>{text}</a>,
     },
     {
       title: 'Action',
+      fixed: 'right',
       render: (_, record) => {
         return <div className='flex'>
           <Button type="primary" onClick={() => accept(record.phone)}>Duyệt</Button>
