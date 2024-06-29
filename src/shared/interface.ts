@@ -1,4 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+
+export interface ITimeOfPost {
+  hours: number,
+  minutes: number
+}
 interface IPost {
   name: string
   userId: string
@@ -9,7 +14,9 @@ interface IPost {
   isNew?: boolean
   distance?: number | null,
   locationStart?: IDistance | null, 
-  locationEnd?: IDistance | null
+  locationEnd?: IDistance | null,
+  time?: ITimeOfPost,
+  distanceAB?: number
 }
 
 export interface IDistance {
