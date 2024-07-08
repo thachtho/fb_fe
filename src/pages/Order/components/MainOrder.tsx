@@ -25,6 +25,9 @@ function MainOrder({ posts, isSaved = false }: IProps) {
               <div
                 className={`latest-order-item ${item?.isNew ? 'new' : 'old'}`}
               >
+                {item.mapUrl && item.mapUrl.length > 0 &&
+                  <img className='rounded-lg' src={`https://${item.mapUrl}`}/>
+                }
                 <span className="name item-m3">
                   {ReactHtmlParser(item.name.replace('G0J0', ''))}
                   {!isSaved && (

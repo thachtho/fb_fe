@@ -14,6 +14,16 @@ const useGetMessage = () => {
   useEffect(() => {
     const getDistanceV1 = async (data: IPost) => {
       const newPost = getPosts() || []
+      const check = newPost.find(item => item.postId === data.postId)
+
+      if (check) {
+        if (check.mapUrl?.length === 0) {
+          check.mapUrl = data.mapUrl;
+          setPosts([...newPost])
+        }
+
+        return;
+      }
       let distance = null
       const currentPosition = getCurrentNavigator()
       

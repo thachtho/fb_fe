@@ -16,7 +16,8 @@ interface IPost {
   locationStart?: IDistance | null, 
   locationEnd?: IDistance | null,
   time?: ITimeOfPost,
-  distanceAB?: number
+  distanceAB?: number,
+  mapUrl?: string
 }
 
 export interface IDistance {
